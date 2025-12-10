@@ -5,7 +5,7 @@ import { useState } from 'react';
 import EquipmentGrid from '@/components/sections/EquipmentGrid';
 import { equipmentItems } from '@/data/equipment';
 
-export default function Catalog({ children, activeCategory }: { children: React.ReactNode, activeCategory: string }) {
+export default function Catalog({ activeCategory }: { activeCategory: string }) {
   
 
   const filteredItems = activeCategory === 'tout'

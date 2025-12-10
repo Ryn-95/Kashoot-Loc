@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import HomeClient from '@/components/sections/HomeClient';
+import Preloader from '@/components/ui/Preloader';
 
 export const metadata: Metadata = {
   title: 'Accueil',
@@ -7,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeClient />;
+  return (
+    <Suspense fallback={<Preloader />}>
+      <HomeClient />
+    </Suspense>
+  );
 }
