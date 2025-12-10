@@ -80,44 +80,15 @@ export default function EquipmentPage() {
           
           {/* Left Column - Images Grid */}
           <div className="lg:col-span-8 order-1">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Main Large Image */}
-                <div className="md:col-span-2 relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-neutral-100 aspect-[4/3] group">
-                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                   <img 
-                     src={item.image} 
-                     alt={`${item.brand} ${item.model}`}
-                     className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-                
-                {/* Detail Images - Hidden on mobile if too many? No, kept for detail */}
-                <div className="relative rounded-[20px] md:rounded-[24px] overflow-hidden bg-neutral-100 aspect-square group cursor-zoom-in hidden md:block">
-                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                   <img 
-                     src={item.image} 
-                     alt="Detail 1"
-                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
-                   />
-                </div>
-                <div className="relative rounded-[20px] md:rounded-[24px] overflow-hidden bg-neutral-100 aspect-square group cursor-zoom-in hidden md:block">
-                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                   <img 
-                     src={item.image} 
-                     alt="Detail 2"
-                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
-                   />
-                   
-                   <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                     <button className="text-white text-xs font-bold uppercase tracking-widest border border-white/30 px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors">
-                       Galerie
-                     </button>
-                   </div>
-                </div>
+             <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-neutral-100 aspect-[4/3] group">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src={item.image} 
+                  alt={`${item.brand} ${item.model}`}
+                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
              </div>
           </div>
 
