@@ -1,23 +1,32 @@
 'use client';
 
 import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { equipmentItems } from '@/data/equipment';
 import Link from 'next/link';
-import { useCart } from '@/context/CartContext';
 
 export default function EquipmentPage() {
   const params = useParams();
-  const router = useRouter();
-  const { addToCart } = useCart();
   const id = Number(params.id);
   const item = equipmentItems.find((i) => i.id === id);
   
   const [selectedColor, setSelectedColor] = useState(item?.colors[0] || '#000000');
   const [selectedDuration, setSelectedDuration] = useState('1 jour');
-  const [selectedAssurance, setSelectedAssurance] = useState('Standard');
-  const [selectedPayment, setSelectedPayment] = useState('0 €');
   const fallbackImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23f3f4f6"/><stop offset="100%" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Inter, sans-serif" font-size="14">Image indisponible</text></svg>';
+
+  // Price calculation logic
+  const getDurationMultiplier = (duration: string) => {
+    switch (duration) {
+      case '1 jour': return 1;
+      case '3 jours': return 3;
+      case '1 semaine': return 7;
+      default: return 1;
+    }
+  };
+
+  const basePrice = item ? parseInt(item.price || '0', 10) : 0;
+  const durationMultiplier = getDurationMultiplier(selectedDuration);
+  const totalPrice = basePrice * durationMultiplier;
 
   if (!item) {
     return (
@@ -33,19 +42,19 @@ export default function EquipmentPage() {
   }
 
   const handleReservation = () => {
-    const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} pour une durée de ${selectedDuration}.`;
+    const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} (Couleur: ${selectedColor}) pour une durée de ${selectedDuration}. Prix total estimé : ${totalPrice}€.`;
     const whatsappUrl = `https://wa.me/33779570959?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
   return (
-    <div className="bg-white min-h-screen pb-20 font-sans pt-[88px]">
+    <div className="bg-white min-h-screen pb-20 font-sans pt-[80px] md:pt-[88px]">
       {/* Main Content */}
       <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-12">
         
         {/* Title Section */}
-        <div className="mb-8 md:mb-12">
-           <div className="flex items-center gap-3 mb-4">
+        <div className="mb-6 md:mb-12">
+           <div className="flex items-center gap-3 mb-3 md:mb-4">
              {item.badge && (
                <span className={`
                  px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border
@@ -59,15 +68,15 @@ export default function EquipmentPage() {
              )}
              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{item.category}</span>
            </div>
-           <h1 className="text-3xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-2 leading-tight">
+           <h1 className="text-2xl sm:text-3xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-2 leading-tight">
              {item.brand} {item.model}
            </h1>
-           <p className="text-lg md:text-2xl text-neutral-500 font-light tracking-tight max-w-2xl">
+           <p className="text-base sm:text-lg md:text-2xl text-neutral-500 font-light tracking-tight max-w-2xl">
              {item.subtext}
            </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
           
           {/* Left Column - Images Grid */}
           <div className="lg:col-span-8 order-1">
@@ -158,39 +167,11 @@ export default function EquipmentPage() {
                     </div>
                  </div>
 
-                 {/* Assurance Selection */}
-                 <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Assurance</label>
-                      <button className="text-[10px] font-bold uppercase tracking-widest text-blue-600 hover:text-blue-800">Info</button>
-                    </div>
-                    <div className="space-y-2">
-                       {['Basic', 'Standard', 'Premium'].map((opt) => (
-                         <button
-                           key={opt}
-                           onClick={() => setSelectedAssurance(opt)}
-                           className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all duration-300 group ${
-                             selectedAssurance === opt 
-                               ? 'border-black bg-neutral-900 text-white shadow-md' 
-                               : 'border-neutral-200 text-neutral-500 hover:border-neutral-300 hover:bg-white'
-                           }`}
-                         >
-                           <span className="font-medium text-sm">{opt}</span>
-                           {selectedAssurance === opt && (
-                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                               <polyline points="20 6 9 17 4 12"></polyline>
-                             </svg>
-                           )}
-                         </button>
-                       ))}
-                    </div>
-                 </div>
-
                  {/* Total Block */}
                  <div className="bg-white rounded-2xl p-6 mt-6 border border-neutral-100 shadow-sm">
                    <div className="flex justify-between items-end mb-2">
                      <span className="text-sm font-medium text-neutral-500">Total</span>
-                     <span className="text-3xl font-black tracking-tighter text-neutral-900">{item.price}€</span>
+                     <span className="text-3xl font-black tracking-tighter text-neutral-900">{totalPrice}€</span>
                    </div>
                    <button 
                      onClick={handleReservation}

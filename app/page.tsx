@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
-import HeroBanner from '@/components/sections/HeroBanner';
-import Catalog from '@/components/sections/Catalog';
-import Preloader from '@/components/ui/Preloader';
+import HomeClient from '@/components/sections/HomeClient';
 
 export const metadata: Metadata = {
   title: 'Accueil',
@@ -9,12 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-white">
-      <Preloader />
-      <Catalog>
-        <HeroBanner />
-      </Catalog>
-    </main>
-  );
+  return <HomeClient />;
 }

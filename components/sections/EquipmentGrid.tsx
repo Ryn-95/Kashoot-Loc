@@ -15,22 +15,22 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
   return (
     <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
       <div className="max-w-[1800px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8 sm:gap-x-6 sm:gap-y-12 md:gap-x-8 md:gap-y-16">
           {items.map((item) => (
             <Link
               key={item.id}
               href={`/equipment/${item.id}`}
-              className="group cursor-pointer flex flex-col gap-4"
+              className="group cursor-pointer flex flex-col gap-3"
             >
-              {/* Card Image Container - Apple Style Squircle */}
-              <div className="relative aspect-square overflow-hidden rounded-[32px] bg-[#F5F5F7] transition-all duration-500 group-hover:bg-[#EAEAEA]">
+              {/* Card Image Container */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
                 {/* Image */}
-                <div className="absolute inset-0 p-10 flex items-center justify-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110">
+                <div className="absolute inset-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={item.image} 
                       alt={`${item.brand} ${item.model}`}
-                      className="w-full h-full object-contain drop-shadow-sm"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
                     />
                 </div>

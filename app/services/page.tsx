@@ -11,7 +11,7 @@ export default function ServicesPage() {
           <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-4 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
             Kashoot Premium
           </span>
-          <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-6 leading-[0.9]">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-6 leading-[0.9]">
             PLUS QU'UNE <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               LOCATION
@@ -30,10 +30,10 @@ export default function ServicesPage() {
 
       {/* Services Grid */}
       <section className="px-6 lg:px-8 pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           
           {/* Service 1: Livraison */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="livraison" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -46,7 +46,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service 2: Studios */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="studios" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -59,7 +59,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service 3: Techniciens */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="techniciens" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -72,7 +72,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service 4: Assurance */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="assurance" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -85,7 +85,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service 5: Post-Production */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="post-production" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -98,7 +98,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Service 6: Consulting */}
-          <div className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
+          <div id="consulting" className="group p-8 rounded-3xl bg-neutral-50 hover:bg-neutral-900 transition-all duration-500 hover:shadow-2xl border border-neutral-100 hover:border-neutral-800">
             <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-neutral-800 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-none transition-colors">
               <svg className="w-6 h-6 text-neutral-900 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -116,7 +116,7 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="bg-neutral-900 py-24 px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-black italic tracking-tighter text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black italic tracking-tighter text-white mb-6">
             UN PROJET SPÉCIFIQUE ?
           </h2>
           <p className="text-neutral-400 mb-10 text-lg font-light">

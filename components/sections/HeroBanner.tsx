@@ -34,7 +34,7 @@ export default function HeroBanner() {
               </span>
             </div>
             
-            <h1 className="text-lg sm:text-xl md:text-3xl font-medium text-white leading-[1.1] max-w-full md:max-w-[450px] tracking-tight">
+            <h1 className="text-lg sm:text-xl md:text-3xl font-medium text-white leading-[1.1] max-w-[60%] sm:max-w-[80%] md:max-w-[450px] tracking-tight">
               Plus qu'une location, une <br/>
               <span className="relative inline-block">
                 <span className="relative z-10 font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
@@ -45,7 +45,7 @@ export default function HeroBanner() {
                 </svg>
               </span> <span className="font-bold">de créer.</span>
             </h1>
-            <p className="mt-3 text-[11px] sm:text-xs md:text-sm text-blue-100 max-w-[90%] md:max-w-[350px] font-light tracking-wide leading-relaxed">
+            <p className="mt-3 text-[11px] sm:text-xs md:text-sm text-blue-100 max-w-[60%] sm:max-w-[80%] md:max-w-[350px] font-light tracking-wide leading-relaxed">
               Accédez au meilleur matériel vidéo sans contraintes. 
               <span className="block mt-1.5 text-blue-200/80">• Livraison 24h • Assurance incluse • Support 24/7</span>
             </p>
@@ -70,7 +70,7 @@ export default function HeroBanner() {
           {/* Phone Mockup Area */}
           <div className="h-[180px] sm:h-[200px] md:h-auto md:flex-1 relative md:min-h-0 overflow-hidden md:overflow-visible">
              {/* Phone Mockup Representation */}
-             <div className="absolute top-2 right-[-20px] sm:right-4 md:right-12 w-[120px] sm:w-[160px] md:w-[180px] bg-black rounded-[1.2rem] md:rounded-[1.5rem] border-[3px] md:border-[4px] border-gray-900 shadow-[0_50px_100px_-12px_rgba(0,0,0,0.5)] transform rotate-[-6deg] overflow-hidden z-20">
+             <div className="absolute top-2 right-[-5px] sm:right-4 md:right-12 w-[90px] sm:w-[160px] md:w-[180px] bg-black rounded-[1.2rem] md:rounded-[1.5rem] border-[3px] md:border-[4px] border-gray-900 shadow-[0_50px_100px_-12px_rgba(0,0,0,0.5)] transform rotate-[-6deg] overflow-hidden z-20">
                 <div className="h-[210px] sm:h-[280px] md:h-[320px] bg-neutral-50 flex flex-col relative">
                   {/* Phone Notch/Header */}
                   <div className="absolute top-0 left-0 right-0 h-4 bg-transparent z-30 flex justify-center">
