@@ -103,7 +103,13 @@ export const equipmentItems = [
     image: '/images/Sony 24-70mm GM II f:2.8 G Master.png',
     available: true,
     colors: ['#000000'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 6,
@@ -118,7 +124,13 @@ export const equipmentItems = [
     image: '/images/Sony 70-200mm GM II.png',
     available: true,
     colors: ['#f0f0f0'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 7,
@@ -133,7 +145,13 @@ export const equipmentItems = [
     image: '/images/Sony 200-600mm G.png',
     available: true,
     colors: ['#f0f0f0'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 8,
@@ -148,7 +166,13 @@ export const equipmentItems = [
     image: '/images/Sony 100-400mm GM.png',
     available: true,
     colors: ['#f0f0f0'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 9,
@@ -163,7 +187,13 @@ export const equipmentItems = [
     image: '/images/Sony 35mm GM f:1.4 G Master.png',
     available: true,
     colors: ['#000000'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 10,
@@ -178,7 +208,13 @@ export const equipmentItems = [
     image: '/images/Sony 50mm GM f:1.2 G Master.png',
     available: true,
     colors: ['#000000'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 11,
@@ -193,7 +229,13 @@ export const equipmentItems = [
     image: '/images/Sony 16-35mm GM f:2.8 G Master.png',
     available: true,
     colors: ['#000000'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 12,
@@ -208,7 +250,13 @@ export const equipmentItems = [
     image: '/images/sony 14mm gm f:1.8 g master.png',
     available: true,
     colors: ['#000000'],
-    included: ['Filtre ND protection']
+    included: [
+      'Filtre ND protection',
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   // Drones
   {
@@ -551,7 +599,13 @@ export const equipmentItems = [
     price: '0',
     image: '/images/Sony FE 300mm F2.8 GM.png',
     available: false,
-    colors: ['#f0f0f0']
+    colors: ['#f0f0f0'],
+    included: [
+      'Bouchon avant',
+      'Bouchon arrière',
+      'Un pare-soleil',
+      'Une housse'
+    ]
   },
   {
     id: 35,
