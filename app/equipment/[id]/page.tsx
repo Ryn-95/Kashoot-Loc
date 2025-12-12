@@ -10,7 +10,7 @@ export default function EquipmentPage() {
   const id = Number(params.id);
   const item = equipmentItems.find((i) => i.id === id);
   
-  const [selectedColor, setSelectedColor] = useState(item?.colors[0] || '#000000');
+  const [selectedColor, setSelectedColor] = useState(item?.colors?.[0] || '#000000');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   
