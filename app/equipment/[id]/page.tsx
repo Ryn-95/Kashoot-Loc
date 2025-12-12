@@ -11,22 +11,24 @@ export default function EquipmentPage() {
   const item = equipmentItems.find((i) => i.id === id);
   
   const [selectedColor, setSelectedColor] = useState(item?.colors[0] || '#000000');
-  const [selectedDuration, setSelectedDuration] = useState('1 jour');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const fallbackImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23f3f4f6"/><stop offset="100%" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Inter, sans-serif" font-size="14">Image indisponible</text></svg>';
 
   // Price calculation logic
-  const getDurationMultiplier = (duration: string) => {
-    switch (duration) {
-      case '1 jour': return 1;
-      case '3 jours': return 3;
-      case '1 semaine': return 7;
-      default: return 1;
-    }
+  const calculateDays = (start: string, end: string) => {
+    if (!start || !end) return 1;
+    const startDateObj = new Date(start);
+    const endDateObj = new Date(end);
+    if (endDateObj < startDateObj) return 1;
+    const diffTime = Math.abs(endDateObj.getTime() - startDateObj.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    return diffDays + 1; // Inclusive
   };
 
   const basePrice = item ? parseInt(item.price || '0', 10) : 0;
-  const durationMultiplier = getDurationMultiplier(selectedDuration);
-  const totalPrice = basePrice * durationMultiplier;
+  const durationInDays = calculateDays(startDate, endDate);
+  const totalPrice = basePrice * durationInDays;
 
   if (!item) {
     return (
@@ -42,7 +44,13 @@ export default function EquipmentPage() {
   }
 
   const handleReservation = () => {
-    const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} (Couleur: ${selectedColor}) pour une durée de ${selectedDuration}. Prix total estimé : ${totalPrice}€.`;
+    if (!startDate || !endDate) {
+      alert('Veuillez sélectionner une date de début et de fin.');
+      return;
+    }
+    const startStr = new Date(startDate).toLocaleDateString('fr-FR');
+    const endStr = new Date(endDate).toLocaleDateString('fr-FR');
+    const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} (Couleur: ${selectedColor}) du ${startStr} au ${endStr} (${durationInDays} jours). Prix total estimé : ${totalPrice}€. Est-ce disponible ?`;
     const whatsappUrl = `https://wa.me/33779570959?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -118,24 +126,52 @@ export default function EquipmentPage() {
                     </div>
                  </div>
 
-                 {/* Duration Selection */}
-                 <div className="space-y-3">
-                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Durée</label>
-                    <div className="grid grid-cols-3 gap-2">
-                       {['1 jour', '3 jours', '1 semaine'].map((duration) => (
-                         <button
-                           key={duration}
-                           onClick={() => setSelectedDuration(duration)}
-                           className={`py-3 px-2 rounded-xl text-xs md:text-sm font-medium border transition-all duration-300 ${
-                             selectedDuration === duration 
-                               ? 'border-black text-black bg-white ring-1 ring-black shadow-sm' 
-                               : 'border-neutral-200 text-neutral-500 hover:border-neutral-300 hover:bg-white'
-                           }`}
-                         >
-                           {duration}
-                         </button>
-                       ))}
+                 {/* Date Selection */}
+                 <div className="space-y-4">
+                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Période de location</label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Du</span>
+                        <input 
+                          type="date" 
+                          min={new Date().toISOString().split('T')[0]}
+                          value={startDate}
+                          onChange={(e) => setStartDate(e.target.value)}
+                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Au</span>
+                        <input 
+                          type="date" 
+                          min={startDate || new Date().toISOString().split('T')[0]}
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
+                        />
+                      </div>
                     </div>
+                    {startDate && endDate && (
+                      <div className="flex justify-between items-center px-4 py-2 bg-neutral-100 rounded-lg">
+                        <span className="text-xs font-medium text-neutral-500">Durée</span>
+                        <span className="text-sm font-bold text-neutral-900">{durationInDays} jours</span>
+                      </div>
+                    )}
+                 </div>
+
+                 {/* Availability Status */}
+                 <div className={`p-4 rounded-xl border ${item.available ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className={`w-2 h-2 rounded-full ${item.available ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></div>
+                      <span className={`text-sm font-bold ${item.available ? 'text-emerald-700' : 'text-red-700'}`}>
+                        {item.available ? 'En stock' : 'Actuellement indisponible'}
+                      </span>
+                    </div>
+                    <p className={`text-xs ${item.available ? 'text-emerald-600' : 'text-red-600'}`}>
+                      {item.available 
+                        ? 'Ce produit est disponible immédiatement.' 
+                        : 'Contactez-nous pour connaître les prochaines disponibilités.'}
+                    </p>
                  </div>
 
                  {/* Total Block */}
