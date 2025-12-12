@@ -4,11 +4,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { equipmentItems } from '@/data/equipment';
 import Link from 'next/link';
-import { Calendar } from '@/components/ui/Calendar';
-import { DateRange } from 'react-day-picker';
-import { addDays, format } from 'date-fns';
-import { fr } from 'date-fns/locale';
-import { Calendar as CalendarIcon, X } from 'lucide-react';
 
 export default function EquipmentPage() {
   const params = useParams();
@@ -16,30 +11,25 @@ export default function EquipmentPage() {
   const item = equipmentItems.find((i) => i.id === id);
   
   const [selectedColor, setSelectedColor] = useState(item?.colors[0] || '#000000');
-  const [date, setDate] = useState<DateRange | undefined>();
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   
   const fallbackImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23f3f4f6"/><stop offset="100%" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Inter, sans-serif" font-size="14">Image indisponible</text></svg>';
 
   // Price calculation logic
-  const calculateDays = (range: DateRange | undefined) => {
-    if (!range?.from || !range?.to) return 0;
-    const diffTime = Math.abs(range.to.getTime() - range.from.getTime());
+  const calculateDays = (start: string, end: string) => {
+    if (!start || !end) return 1;
+    const startDateObj = new Date(start);
+    const endDateObj = new Date(end);
+    if (endDateObj < startDateObj) return 1;
+    const diffTime = Math.abs(endDateObj.getTime() - startDateObj.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     return diffDays + 1; // Inclusive
   };
 
   const basePrice = item ? parseInt(item.price || '0', 10) : 0;
-  const durationInDays = calculateDays(date);
-  const totalPrice = durationInDays > 0 ? basePrice * durationInDays : basePrice; // Show base price if no date selected, or 0? better show base price as unit price. Actually, logic was basePrice * duration. If duration 0, price 0. Let's keep it consistent.
-  
-  // Correction: If no dates selected, usually we show "from X€". But here we calculate total.
-  // If duration is 0, let's show 0 or base price.
-  // The original logic returned 1 if invalid.
-  // Let's stick to 1 day minimum for display if nothing selected? No, user explicitly selects dates.
-  // If durationInDays is 0, totalPrice is 0.
-  
-  const displayPrice = durationInDays > 0 ? totalPrice : basePrice;
+  const durationInDays = calculateDays(startDate, endDate);
+  const totalPrice = basePrice * durationInDays;
 
   if (!item) {
     return (
@@ -55,12 +45,12 @@ export default function EquipmentPage() {
   }
 
   const handleReservation = () => {
-    if (!date?.from || !date?.to) {
-      alert('Veuillez sélectionner une période de location.');
+    if (!startDate || !endDate) {
+      alert('Veuillez sélectionner une date de début et de fin.');
       return;
     }
-    const startStr = format(date.from, 'dd/MM/yyyy');
-    const endStr = format(date.to, 'dd/MM/yyyy');
+    const startStr = new Date(startDate).toLocaleDateString('fr-FR');
+    const endStr = new Date(endDate).toLocaleDateString('fr-FR');
     const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} (Couleur: ${selectedColor}) du ${startStr} au ${endStr} (${durationInDays} jours). Prix total estimé : ${totalPrice}€. Est-ce disponible ?`;
     const whatsappUrl = `https://wa.me/33779570959?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -138,56 +128,34 @@ export default function EquipmentPage() {
                  </div>
 
                  {/* Date Selection */}
-                 <div className="space-y-3 relative">
+                 <div className="space-y-4">
                     <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Période de location</label>
-                    
-                    <button
-                      onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-                      className={`w-full p-4 rounded-xl border text-left flex items-center justify-between transition-all duration-300 ${
-                        isCalendarOpen ? 'border-black ring-1 ring-black' : 'border-neutral-200 hover:border-neutral-300 bg-neutral-50/50 hover:bg-white'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <CalendarIcon className="w-5 h-5 text-neutral-500" />
-                        <span className={`text-sm font-medium ${date?.from ? 'text-neutral-900' : 'text-neutral-400'}`}>
-                          {date?.from ? (
-                            date.to ? (
-                              <>
-                                {format(date.from, 'dd MMM', { locale: fr })} - {format(date.to, 'dd MMM yyyy', { locale: fr })}
-                              </>
-                            ) : (
-                              format(date.from, 'dd MMM yyyy', { locale: fr })
-                            )
-                          ) : (
-                            'Sélectionner les dates'
-                          )}
-                        </span>
-                      </div>
-                      {durationInDays > 1 && (
-                        <span className="text-xs font-bold bg-neutral-900 text-white px-2 py-1 rounded-md">
-                          {durationInDays} jours
-                        </span>
-                      )}
-                    </button>
-
-                    {/* Calendar Popover */}
-                    {isCalendarOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-2 p-2 bg-white rounded-2xl border border-neutral-100 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-200">
-                        <div className="flex justify-between items-center mb-2 px-2 pt-2">
-                           <span className="text-xs font-bold uppercase tracking-widest text-neutral-500">Calendrier</span>
-                           <button onClick={() => setIsCalendarOpen(false)} className="p-1 hover:bg-neutral-100 rounded-full transition-colors">
-                             <X className="w-4 h-4 text-neutral-500" />
-                           </button>
-                        </div>
-                        <Calendar
-                          mode="range"
-                          selected={date}
-                          onSelect={setDate}
-                          numberOfMonths={1}
-                          disabled={{ before: new Date() }}
-                          initialFocus
-                          className="w-full flex justify-center"
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Du</span>
+                        <input 
+                          type="date" 
+                          min={new Date().toISOString().split('T')[0]}
+                          value={startDate}
+                          onChange={(e) => setStartDate(e.target.value)}
+                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
                         />
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Au</span>
+                        <input 
+                          type="date" 
+                          min={startDate || new Date().toISOString().split('T')[0]}
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
+                        />
+                      </div>
+                    </div>
+                    {startDate && endDate && (
+                      <div className="flex justify-between items-center px-4 py-2 bg-neutral-100 rounded-lg">
+                        <span className="text-xs font-medium text-neutral-500">Durée</span>
+                        <span className="text-sm font-bold text-neutral-900">{durationInDays} jours</span>
                       </div>
                     )}
                  </div>
