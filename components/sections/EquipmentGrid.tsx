@@ -25,12 +25,12 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
               {/* Card Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
                 {/* Image */}
-                <div className="absolute inset-0">
+                <div className={`absolute inset-0 ${item.imageFit === 'contain' ? (item.imagePadding || 'p-2') + ' bg-white' : ''}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={item.image} 
                       alt={`${item.brand} ${item.model}`}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 ${item.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
                       onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
                     />
                 </div>
@@ -42,7 +42,7 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
                       px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-xl border border-white/50
                       ${item.badgeType === 'yellow' ? 'bg-yellow-400/20 text-yellow-800 border-yellow-400/30' : ''}
                       ${item.badgeType === 'green' ? 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20' : ''}
-                      ${item.badgeType === 'blue' ? 'bg-blue-600/10 text-blue-700 border-blue-600/20' : ''}
+                      ${item.badgeType === 'blue' ? 'bg-blue-600 text-white border-blue-500' : ''}
                       ${item.badgeType === 'neutral' ? 'bg-white/60 text-neutral-600' : ''}
                     `}>
                       {item.badge}
