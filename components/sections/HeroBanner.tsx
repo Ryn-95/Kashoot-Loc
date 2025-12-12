@@ -34,7 +34,7 @@ export default function HeroBanner() {
               </span>
             </div>
             
-            <h1 className="text-lg sm:text-xl md:text-3xl font-medium text-white leading-[1.1] max-w-[60%] sm:max-w-[80%] md:max-w-[450px] tracking-tight">
+            <h1 className="text-lg sm:text-xl md:text-3xl font-brand text-white leading-[1.1] max-w-[60%] sm:max-w-[80%] md:max-w-[450px]">
               Plus qu'une location, une <br/>
               <span className="relative inline-block">
                 <span className="relative z-10 font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">

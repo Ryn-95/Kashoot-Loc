@@ -68,7 +68,7 @@ export default function EquipmentPage() {
              )}
              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{item.category}</span>
            </div>
-           <h1 className="text-2xl sm:text-3xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-2 leading-tight">
+           <h1 className="text-2xl sm:text-3xl md:text-6xl font-brand text-neutral-900 mb-2 leading-tight">
              {item.brand} {item.model}
            </h1>
            <p className="text-base sm:text-lg md:text-2xl text-neutral-500 font-light tracking-tight max-w-2xl">

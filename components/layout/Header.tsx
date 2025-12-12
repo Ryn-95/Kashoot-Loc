@@ -157,7 +157,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 group relative z-30">
             <div className="flex flex-col leading-none select-none">
-              <span className="text-[20px] sm:text-[24px] font-black italic tracking-tighter text-black group-hover:opacity-80 transition-opacity">
+              <span className="text-[20px] sm:text-[24px] font-brand text-black group-hover:opacity-80 transition-opacity">
                 KASHOOT
               </span>
               <span className="font-bold text-[7px] sm:text-[8px] text-neutral-500 tracking-[0.4em] uppercase ml-0.5 group-hover:text-neutral-800 transition-colors">

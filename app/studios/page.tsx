@@ -80,7 +80,7 @@ function StudiosContent() {
           <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-purple-600 mb-4 bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
             Kashoot Studios
           </span>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black italic tracking-tighter text-neutral-900 mb-6 leading-[0.9]">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-brand text-neutral-900 mb-6 leading-[0.9]">
             ESPACES DE <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
               CRÉATION

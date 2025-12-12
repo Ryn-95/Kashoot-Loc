@@ -39,6 +39,10 @@
 }
 
 @layer utilities {
+  .font-brand {
+    @apply font-black italic tracking-tighter;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
