@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import EquipmentGrid from '@/components/sections/EquipmentGrid';
 import { equipmentItems } from '@/data/equipment';
 
 export default function Catalog({ activeCategory }: { activeCategory: string }) {
   
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeCategory]);
 
   const filteredItems = activeCategory === 'tout'
     ? equipmentItems
