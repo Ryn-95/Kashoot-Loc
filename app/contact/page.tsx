@@ -49,8 +49,8 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">Contact Direct</h3>
                 <div className="space-y-2">
-                  <a href="mailto:hello@kashoot.fr" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
-                    hello@kashoot.fr
+                  <a href="mailto:hello@kashootloc.fr" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
+                    hello@kashootloc.fr
                   </a>
                   <a href="tel:+33123456789" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
                     +33 1 23 45 67 89

@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.kashoot.fr'),
+  metadataBase: new URL('https://www.kashootloc.fr'),
   title: {
     default: "Kashoot - Location de matériel vidéo professionnel",
     template: "%s | Kashoot",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://www.kashoot.fr",
+    url: "https://www.kashootloc.fr",
     title: "Kashoot - Location de matériel vidéo professionnel",
     description: "Location de matériel vidéo et photo professionnel haut de gamme.",
     siteName: "Kashoot",
