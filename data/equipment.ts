@@ -71,7 +71,7 @@ export const equipmentItems = [
     specsBadge: '32-bit Float',
     badge: 'Audio',
     badgeType: 'neutral',
-    price: '29',
+    price: '10',
     image: '/images/Rode Wireless PRO Wireless Mic System.png',
     available: true,
     colors: [
@@ -87,7 +87,7 @@ export const equipmentItems = [
     specsBadge: 'Bi-Color',
     badge: 'Pack Duo',
     badgeType: 'blue',
-    price: '45',
+    price: '15',
     image: '/images/NEEWER Kit 660 LED (x2) Panneaux LED.png',
     available: true,
     colors: [
@@ -173,7 +173,7 @@ export const equipmentItems = [
     specsBadge: '4K 120p',
     badge: 'Vlog',
     badgeType: 'neutral',
-    price: '10',
+    price: '5',
     image: '/images/DJI Osmo Pocket 3 Créatif.png',
     available: true,
     colors: [
@@ -231,7 +231,7 @@ export const equipmentItems = [
     specsBadge: '5.3K',
     badge: 'Action',
     badgeType: 'neutral',
-    price: '39',
+    price: '5',
     image: '/images/GoPro Hero 13 Black.png',
     available: true,
     colors: [
@@ -289,7 +289,7 @@ export const equipmentItems = [
     specsBadge: 'AI Tracking',
     badge: 'Mobile',
     badgeType: 'neutral',
-    price: '19',
+    price: '5',
     image: '/images/Insta360 Flow Pro Smartphone Stabilizer.png',
     imageFit: 'contain',
     imagePadding: 'p-0',
@@ -310,7 +310,7 @@ export const equipmentItems = [
     specsBadge: 'Ultralight',
     badge: 'Nouveau',
     badgeType: 'blue',
-    price: '25',
+    price: '5',
     image: '/images/DJI Mic Mini Compact Wireless Mic.png',
     available: true,
     colors: [
@@ -411,7 +411,7 @@ export const equipmentItems = [
     specsBadge: 'Directional',
     badge: null,
     badgeType: 'neutral',
-    price: '15',
+    price: '5',
     image: '/images/MICRO.png.png',
     available: true,
     colors: [
@@ -503,7 +503,7 @@ export const equipmentItems = [
     specsBadge: 'Ergonomic',
     badge: null,
     badgeType: 'neutral',
-    price: '10',
+    price: '5',
     image: '/images/SMALLRIG PoignéeSupérieureTopHandle.png',
     available: true,
     colors: [
@@ -536,7 +536,7 @@ export const equipmentItems = [
     specsBadge: 'Aluminum',
     badge: null,
     badgeType: 'neutral',
-    price: '15',
+    price: '5',
     image: '/images/SMALLRIG Cage CaméraProtection&Mounts.png',
     available: true,
     colors: [
@@ -584,7 +584,7 @@ export const equipmentItems = [
     specsBadge: 'Universal',
     badge: null,
     badgeType: 'neutral',
-    price: '10',
+    price: '5',
     image: '/images/SMALLRIGKitMini-PoignéeLatérale.png',
     available: true,
     colors: [
@@ -674,7 +674,7 @@ export const equipmentItems = [
     specsBadge: '360°',
     badge: 'Bientôt',
     badgeType: 'neutral',
-    price: '0',
+    price: '5',
     image: '/images/INSTA360.png',
     available: false,
     colors: [
