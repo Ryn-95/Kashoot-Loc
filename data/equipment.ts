@@ -196,7 +196,7 @@ export const equipmentItems = [
     specsBadge: '5" HDR',
     badge: '4K 60p',
     badgeType: 'neutral',
-    price: '39',
+    price: '15',
     image: '/images/AtomosNinjaVMonitorRecorder.png',
     available: true,
     colors: [
@@ -686,13 +686,13 @@ export const equipmentItems = [
     category: 'moniteurs',
     brand: 'Atomos',
     model: 'NINJA ULTRA',
-    subtext: 'Coming Soon',
+    subtext: 'Monitor Recorder',
     specsBadge: 'Recorder',
-    badge: 'Bientôt',
-    badgeType: 'neutral',
-    price: '0',
+    badge: 'Nouveau',
+    badgeType: 'blue',
+    price: '15',
     image: '/images/AtomosNINJAULTRAComingSoon.png',
-    available: false,
+    available: true,
     colors: [
       '#000000'
     ]

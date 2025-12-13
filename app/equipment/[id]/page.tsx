@@ -4,11 +4,14 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { equipmentItems } from '@/data/equipment';
 import Link from 'next/link';
+import { useCart } from '@/context/CartContext';
+import EquipmentGrid from '@/components/sections/EquipmentGrid';
 
 export default function EquipmentPage() {
   const params = useParams();
   const id = Number(params.id);
   const item = equipmentItems.find((i) => i.id === id);
+  const { addToCart, setIsCartOpen } = useCart();
   
   const [selectedColor, setSelectedColor] = useState(item?.colors?.[0] || '#000000');
   const [startDate, setStartDate] = useState('');
@@ -44,16 +47,25 @@ export default function EquipmentPage() {
     );
   }
 
-  const handleReservation = () => {
+  const handleAddToCart = () => {
     if (!startDate || !endDate) {
       alert('Veuillez sélectionner une date de début et de fin.');
       return;
     }
-    const startStr = new Date(startDate).toLocaleDateString('fr-FR');
-    const endStr = new Date(endDate).toLocaleDateString('fr-FR');
-    const message = `Bonjour, je souhaite réserver : ${item.brand} ${item.model} (Couleur: ${selectedColor}) du ${startStr} au ${endStr} (${durationInDays} jours). Prix total estimé : ${totalPrice}€. Est-ce disponible ?`;
-    const whatsappUrl = `https://wa.me/33779570959?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    
+    if (item) {
+      addToCart({
+        id: item.id,
+        brand: item.brand,
+        model: item.model,
+        price: parseInt(item.price || '0', 10),
+        image: item.image,
+        color: selectedColor,
+        duration: `${durationInDays} jours`,
+        assurance: 'Standard'
+      });
+      setIsCartOpen(true);
+    }
   };
 
   return (
@@ -182,16 +194,16 @@ export default function EquipmentPage() {
                      <span className="text-3xl font-black tracking-tighter text-neutral-900">{totalPrice}€</span>
                    </div>
                    <button 
-                     onClick={handleReservation}
-                     disabled={!item.available}
-                     className={`w-full font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl text-xs uppercase tracking-widest mt-4 ${
-                       !item.available 
-                         ? 'bg-neutral-200 text-neutral-400 cursor-not-allowed hover:bg-neutral-200 hover:shadow-none' 
-                         : 'bg-black text-white hover:bg-neutral-800'
-                     }`}
-                   >
-                     {item.available ? 'Commander' : (item.badge === 'Bientôt' ? 'Bientôt' : 'Indisponible')}
-                   </button>
+                    onClick={handleAddToCart}
+                    disabled={!item.available}
+                    className={`w-full font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl text-xs uppercase tracking-widest mt-4 ${
+                      !item.available 
+                        ? 'bg-neutral-200 text-neutral-400 cursor-not-allowed hover:bg-neutral-200 hover:shadow-none' 
+                        : 'bg-black text-white hover:bg-neutral-800'
+                    }`}
+                  >
+                    {item.available ? 'AJOUTER AU PANIER' : (item.badge === 'Bientôt' ? 'Bientôt' : 'Indisponible')}
+                  </button>
                  </div>
              </div>
           </div>
@@ -270,6 +282,30 @@ export default function EquipmentPage() {
              </div>
           </div>
 
+        </div>
+
+        {/* Related Products Section */}
+        <div className="mt-24 md:mt-32 border-t border-neutral-100 pt-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-8 md:mb-12">
+            Souvent loué avec
+          </h2>
+          <EquipmentGrid 
+            items={equipmentItems
+              .filter(i => i.id !== item.id)
+              .sort((a, b) => {
+                 // Prioritize same category
+                 if (a.category === item.category && b.category !== item.category) return -1;
+                 if (a.category !== item.category && b.category === item.category) return 1;
+                 // Then prioritize accessories if current is not accessory
+                 if (item.category !== 'accessoires') {
+                    if (a.category === 'accessoires' && b.category !== 'accessoires') return -1;
+                    if (a.category !== 'accessoires' && b.category === 'accessoires') return 1;
+                 }
+                 return 0;
+              })
+              .slice(0, 4)
+            } 
+          />
         </div>
       </main>
     </div>
