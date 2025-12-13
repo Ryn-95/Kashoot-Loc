@@ -71,8 +71,15 @@ export default function CartPage() {
                         {item.model}
                       </h3>
                     </div>
-                    <div className="text-lg font-bold text-neutral-900">
-                      {(item.price * item.quantity).toFixed(2)}€
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-neutral-900">
+                        {(item.price * item.quantity).toFixed(2)}€
+                      </div>
+                      {item.unitPrice && (
+                        <div className="text-xs text-neutral-500">
+                          {item.unitPrice}€ / jour
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -140,9 +147,18 @@ export default function CartPage() {
                 </div>
               </div>
 
-              <button className="w-full bg-black text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl mb-4">
-                Paiement
-              </button>
+              <button 
+                 onClick={() => {
+                   const message = `Bonjour, je souhaite louer :\n\n${items.map(item => 
+                     `- ${item.quantity}x ${item.brand} ${item.model}\n  Du ${item.startDate} au ${item.endDate} (${item.duration})\n  Prix : ${(item.price * item.quantity).toFixed(2)}€`
+                   ).join('\n\n')}\n\nSous-total : ${cartTotal.toFixed(2)}€\nTVA (20%) : ${(cartTotal * 0.2).toFixed(2)}€\nTotal : ${(cartTotal * 1.2).toFixed(2)}€`;
+                   
+                   window.open(`https://wa.me/33600000000?text=${encodeURIComponent(message)}`, '_blank');
+                 }}
+                 className="w-full bg-black text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl mb-4"
+               >
+                 Paiement via WhatsApp
+               </button>
               
               <p className="text-xs text-center text-neutral-400">
                 Paiement sécurisé par Stripe. En validant votre commande, vous acceptez nos conditions générales de location.

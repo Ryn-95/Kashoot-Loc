@@ -12,6 +12,7 @@ export const equipmentItems = [
     image: '/images/Gemini_Generated_Image_64sdc364sdc364sd.png',
     imageFit: 'cover',
     available: true,
+    suggestedAccessories: [42, 5, 14],
     colors: [
       '#000000'
     ],
@@ -114,6 +115,7 @@ export const equipmentItems = [
     price: '30',
     image: '/images/Sony A7 IV.png',
     available: true,
+    suggestedAccessories: [42, 6, 16],
     colors: [
       '#000000'
     ],
@@ -291,8 +293,7 @@ export const equipmentItems = [
     badgeType: 'neutral',
     price: '5',
     image: '/images/Insta360 Flow Pro Smartphone Stabilizer.png',
-    imageFit: 'contain',
-    imagePadding: 'p-0',
+    imageFit: 'cover',
     available: true,
     colors: [
       '#ffffff'
@@ -520,8 +521,8 @@ export const equipmentItems = [
     badge: null,
     badgeType: 'neutral',
     price: '5',
-    image: '/images/NEEWER Monopode TP77 NEEWER Monopode TP77 Video Monopod.png',
-    imageFit: 'contain',
+    image: '/images/NEEWER Monopode TP77.png',
+    imageFit: 'cover',
     available: true,
     colors: [
       '#000000'
@@ -601,9 +602,8 @@ export const equipmentItems = [
     badge: null,
     badgeType: 'neutral',
     price: '5',
-    image: '/images/Manfrotto Element MIIMonopodVidéo.png',
-    imageFit: 'contain',
-    imagePadding: 'p-8',
+    image: '/images/Manfrotto Element MII .png',
+    imageFit: 'cover',
     available: true,
     colors: [
       '#000000'
@@ -619,9 +619,8 @@ export const equipmentItems = [
     badge: null,
     badgeType: 'neutral',
     price: '5',
-    image: '/images/Manbily Monopode ExtensibleSupportCaméra.png',
-    imageFit: 'contain',
-    imagePadding: 'p-0',
+    image: '/images/Manbily Monopode Extensible.png',
+    imageFit: 'cover',
     available: true,
     colors: [
       '#000000'
@@ -637,7 +636,7 @@ export const equipmentItems = [
     badge: null,
     badgeType: 'neutral',
     price: '5',
-    image: '/images/Sony Battery NP-FZ100.png',
+    image: '/images/Sony Batterie NP-FZ100.png',
     available: true,
     colors: [
       '#000000'
@@ -706,9 +705,9 @@ export const equipmentItems = [
     specsBadge: 'Control',
     badge: 'Bientôt',
     badgeType: 'neutral',
-    price: '0',
+    price: '5',
     image: '/images/SMALLRIGMiniFollowFocusComingSoon.png',
-    available: false,
+    available: true,
     colors: [
       '#000000'
     ]
@@ -722,9 +721,62 @@ export const equipmentItems = [
     specsBadge: 'Protection',
     badge: 'Bientôt',
     badgeType: 'neutral',
-    price: '0',
+    price: '5',
     image: '/images/K&F CONCEPTHousse dePluie.png',
-    available: false,
+    available: true,
+    colors: [
+      '#000000'
+    ]
+  },
+  {
+    id: 42,
+    category: 'accessoires',
+    brand: 'SanDisk',
+    model: 'Extreme Pro 256Go',
+    subtext: 'Carte SD XC II',
+    specsBadge: 'V90',
+    badge: 'Stock: 5',
+    badgeType: 'neutral',
+    price: '5',
+    image: '/images/sandisk256GB.png',
+    available: true,
+    colors: [
+      '#000000'
+    ]
+  },
+  {
+    id: 43,
+    category: 'audio',
+    brand: 'Sony',
+    model: 'WF-1000XM5',
+    subtext: 'Écouteurs sans fil',
+    specsBadge: 'Noise Canceling',
+    badge: 'Nouveau',
+    badgeType: 'blue',
+    price: '5',
+    image: '/images/Ecouteur sony .png',
+    available: true,
+    colors: [
+      '#000000'
+    ],
+    included: [
+      'Boîtier de charge',
+      'Câble USB-C',
+      'Embouts (S/M/L)'
+    ]
+  },
+  {
+    id: 44,
+    category: 'accessoires',
+    brand: 'Sony',
+    model: 'Sac de Transport',
+    subtext: 'Pour Caméras Alpha',
+    specsBadge: 'Rembourré',
+    badge: null,
+    badgeType: 'neutral',
+    price: '5',
+    image: '/images/Sac pour sony.png',
+    available: true,
     colors: [
       '#000000'
     ]

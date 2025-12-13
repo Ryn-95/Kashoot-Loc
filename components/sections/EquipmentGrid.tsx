@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { equipmentItems } from '@/data/equipment';
+import { useWishlist } from '@/context/WishlistContext';
 
 type EquipmentItem = typeof equipmentItems[0];
 
@@ -10,6 +11,7 @@ interface EquipmentGridProps {
 }
 
 export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridProps) {
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const fallbackImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23f3f4f6"/><stop offset="100%" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Inter, sans-serif" font-size="14">Image indisponible</text></svg>';
   
   return (
@@ -24,8 +26,32 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
             >
               {/* Card Image Container */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+                {/* Wishlist Button */}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleWishlist(item.id);
+                  }}
+                  className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md hover:bg-white transition-all duration-300 group/heart shadow-sm hover:shadow-md"
+                >
+                  <svg 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill={isInWishlist(item.id) ? "#ef4444" : "none"} 
+                    stroke={isInWishlist(item.id) ? "#ef4444" : "currentColor"} 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="transition-transform duration-300 group-hover/heart:scale-110"
+                  >
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                </button>
+
                 {/* Image */}
-                <div className={`absolute inset-0 ${item.imageFit === 'contain' ? (item.imagePadding || 'p-2') + ' bg-white' : ''}`}>
+                <div className={`absolute inset-0 ${item.imageFit === 'contain' ? ((item as any).imagePadding || 'p-2') + ' bg-white' : ''}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                       src={item.image} 
@@ -50,10 +76,7 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
                   </div>
                 )}
 
-                {/* Status Indicator - Subtle Dot */}
-                <div className="absolute top-5 right-5 z-10">
-                   <div className={`w-1.5 h-1.5 rounded-full ${item.available ? 'bg-emerald-500 ring-4 ring-emerald-500/10' : 'bg-red-500 ring-4 ring-red-500/10'}`} />
-                </div>
+
               </div>
 
               {/* Card Content - Clean & Typography Focused */}

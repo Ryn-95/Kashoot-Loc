@@ -1,9 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '@/context/CartContext';
+import { useWishlist } from '@/context/WishlistContext';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { equipmentItems } from '@/data/equipment';
 
 // Dropdown Content Components
 const MaterielContent = () => (
@@ -122,7 +126,18 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { itemCount } = useCart();
+  const { count: wishlistCount } = useWishlist();
   const pathname = usePathname();
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const searchResults = searchQuery 
+    ? equipmentItems.filter(item => 
+        (item.brand + ' ' + item.model + ' ' + item.subtext).toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 4) 
+    : [];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,7 +150,27 @@ export default function Header() {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsSearchOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (isSearchOpen) {
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    } else {
+      document.body.style.overflow = 'unset';
+      setSearchQuery('');
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isSearchOpen]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery) {
+      window.location.href = `/?search=${encodeURIComponent(searchQuery)}`;
+      setIsSearchOpen(false);
+    }
+  };
 
   const handleMouseEnter = (menu: string) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -223,18 +258,34 @@ export default function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3 relative z-30">
+            {/* Search Button */}
+            <button 
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="w-10 h-10 flex items-center justify-center text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
             <Link 
-              href="/login" 
+              href="/contact" 
               className="hidden md:flex items-center justify-center h-10 px-6 text-[13px] font-bold uppercase tracking-wide text-neutral-900 border border-neutral-200 rounded-full hover:bg-black hover:text-white hover:border-black transition-all duration-300"
             >
-              Connexion
+              Contact
             </Link>
-            
-            {/* Contact Icon */}
-            <Link href="/contact" className="hidden md:flex w-10 h-10 items-center justify-center text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors">
+
+            {/* Wishlist Button */}
+            <Link href="/wishlist" className="relative w-10 h-10 flex items-center justify-center text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 21l1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border border-white">
+                  {wishlistCount}
+                </span>
+              )}
             </Link>
 
             {/* Cart Button */}
@@ -253,6 +304,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button 
+              aria-label="Menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden w-10 h-10 flex items-center justify-center bg-neutral-100 text-neutral-900 rounded-full hover:bg-neutral-200 transition-colors"
             >
@@ -273,6 +325,117 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Search Overlay */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-3xl"
+          >
+            <div className="max-w-3xl mx-auto px-6 pt-32 relative h-full">
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
+                <form onSubmit={handleSearch}>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Rechercher..."
+                    className="w-full text-4xl md:text-6xl font-bold bg-transparent border-none outline-none placeholder:text-neutral-300 text-neutral-900 tracking-tight"
+                  />
+                </form>
+                
+                {/* Search Results */}
+                {searchQuery && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mt-12 pb-20 overflow-y-auto max-h-[60vh]"
+                  >
+                    <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6">Résultats</h3>
+                    <div className="grid grid-cols-1 gap-4">
+                      {searchResults.length > 0 ? (
+                        searchResults.map((item) => (
+                          <Link 
+                            key={item.id}
+                            href={`/equipment/${item.id}`}
+                            onClick={() => setIsSearchOpen(false)}
+                            className="flex items-center gap-6 p-4 rounded-2xl hover:bg-neutral-50 transition-all group"
+                          >
+                            <div className="w-20 h-20 bg-neutral-100 rounded-xl overflow-hidden relative flex-shrink-0">
+                              <Image
+                                src={item.image}
+                                alt={item.model}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div>
+                              <div className="text-lg font-bold text-neutral-900 group-hover:text-blue-600 transition-colors">
+                                {item.brand} {item.model}
+                              </div>
+                              <div className="text-sm text-neutral-500">{item.category}</div>
+                            </div>
+                            <div className="ml-auto flex flex-col items-end">
+                              <span className="text-lg font-bold text-neutral-900">{item.price}€</span>
+                              <span className="text-xs text-neutral-500">/jour</span>
+                            </div>
+                          </Link>
+                        ))
+                      ) : (
+                        <div className="text-neutral-500 py-8">Aucun résultat trouvé pour "{searchQuery}"</div>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Suggestions (only when no query) */}
+                {!searchQuery && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="mt-12"
+                  >
+                    <h3 className="text-xs font-bold text-neutral-400 uppercase tracking-widest mb-6">Suggestions</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {['Sony A7S III', 'Aputure', 'Ronin', 'Canon', 'Blackmagic'].map((term) => (
+                        <button
+                          key={term}
+                          onClick={() => setSearchQuery(term)}
+                          className="px-5 py-2.5 rounded-full bg-neutral-100 text-sm font-medium hover:bg-black hover:text-white transition-all"
+                        >
+                          {term}
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+
+              {/* Close Button */}
+              <button 
+                onClick={() => setIsSearchOpen(false)}
+                className="absolute top-8 right-0 md:-right-24 w-12 h-12 flex items-center justify-center rounded-full bg-neutral-100 hover:bg-neutral-200 transition-colors"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 z-20 bg-white transition-all duration-300 md:hidden ${
         isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
@@ -287,14 +450,6 @@ export default function Header() {
                 <Link href="/studios" className="text-xl sm:text-2xl font-bold text-neutral-900">Studios</Link>
                 <Link href="/services" className="text-xl sm:text-2xl font-bold text-neutral-900">Services</Link>
                 <Link href="/contact" className="text-xl sm:text-2xl font-bold text-neutral-900">Contact</Link>
-              </nav>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest mb-4">Compte</h3>
-              <nav className="flex flex-col gap-4">
-                <Link href="/login" className="text-lg font-medium text-neutral-900">Connexion</Link>
-                <Link href="/signup" className="text-lg font-medium text-neutral-900">Créer un compte</Link>
               </nav>
             </div>
           </div>

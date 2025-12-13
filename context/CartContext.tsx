@@ -6,7 +6,11 @@ export type CartItem = {
   id: number;
   brand: string;
   model: string;
-  price: number;
+  price: number; // Total price for the duration (unitPrice * days)
+  unitPrice: number; // Daily rate
+  days: number;
+  startDate: string;
+  endDate: string;
   image: string;
   color: string;
   duration: string;
@@ -36,7 +40,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const savedCart = localStorage.getItem('kashoot_cart');
     if (savedCart) {
       try {
-        setItems(JSON.parse(savedCart));
+        const parsedCart = JSON.parse(savedCart);
+        // Migration for old cart items (add defaults if missing)
+        const migratedCart = parsedCart.map((item: any) => ({
+          ...item,
+          unitPrice: item.unitPrice || item.price,
+          days: item.days || 1,
+          startDate: item.startDate || new Date().toISOString().split('T')[0],
+          endDate: item.endDate || new Date().toISOString().split('T')[0],
+        }));
+        setItems(migratedCart);
       } catch (e) {
         console.error('Failed to parse cart from localStorage', e);
       }
@@ -55,7 +68,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           item.id === newItem.id && 
           item.color === newItem.color && 
           item.duration === newItem.duration && 
-          item.assurance === newItem.assurance
+          item.assurance === newItem.assurance &&
+          item.startDate === newItem.startDate &&
+          item.endDate === newItem.endDate
       );
 
       if (existingItem) {

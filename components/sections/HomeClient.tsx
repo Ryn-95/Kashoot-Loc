@@ -11,16 +11,21 @@ export default function HomeClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const initialCategory = searchParams.get('category') || 'tout';
+  const initialSearch = searchParams.get('search') || '';
+  
   const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
 
   // Sync state with URL params when they change
   useEffect(() => {
     const category = searchParams.get('category');
-    if (category) {
-      setActiveCategory(category);
-    } else {
-      setActiveCategory('tout');
-    }
+    const search = searchParams.get('search');
+    
+    if (category) setActiveCategory(category);
+    else setActiveCategory('tout');
+    
+    if (search) setSearchQuery(search);
+    else setSearchQuery('');
   }, [searchParams]);
 
   const handleCategoryChange = (category: string) => {
@@ -32,6 +37,7 @@ export default function HomeClient() {
     } else {
       newParams.set('category', category);
     }
+    // Reset search when changing category if desired, or keep it. Let's keep it flexible.
     router.push(`/?${newParams.toString()}`, { scroll: false });
   };
 
@@ -43,7 +49,7 @@ export default function HomeClient() {
         onCategoryChange={handleCategoryChange} 
       />
       <HeroBanner />
-      <Catalog activeCategory={activeCategory} />
+      <Catalog activeCategory={activeCategory} searchQuery={searchQuery} />
     </main>
   );
 }

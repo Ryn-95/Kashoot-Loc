@@ -54,11 +54,16 @@ export default function EquipmentPage() {
     }
     
     if (item) {
+      const unitPrice = parseInt(item.price || '0', 10);
       addToCart({
         id: item.id,
         brand: item.brand,
         model: item.model,
-        price: parseInt(item.price || '0', 10),
+        price: unitPrice * durationInDays,
+        unitPrice: unitPrice,
+        days: durationInDays,
+        startDate: startDate,
+        endDate: endDate,
         image: item.image,
         color: selectedColor,
         duration: `${durationInDays} jours`,
@@ -73,6 +78,15 @@ export default function EquipmentPage() {
       {/* Main Content */}
       <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-12">
         
+        {/* Breadcrumbs */}
+        <nav className="flex items-center gap-2 text-xs font-medium text-neutral-500 mb-8 uppercase tracking-wider">
+          <Link href="/" className="hover:text-black transition-colors">Accueil</Link>
+          <span className="text-neutral-300">/</span>
+          <Link href={`/?category=${item.category}`} className="hover:text-black transition-colors">{item.category}</Link>
+          <span className="text-neutral-300">/</span>
+          <span className="text-black">{item.brand} {item.model}</span>
+        </nav>
+
         {/* Title Section */}
         <div className="mb-6 md:mb-12">
            <div className="flex items-center gap-3 mb-3 md:mb-4">
@@ -290,20 +304,22 @@ export default function EquipmentPage() {
             Souvent loué avec
           </h2>
           <EquipmentGrid 
-            items={equipmentItems
-              .filter(i => i.id !== item.id)
-              .sort((a, b) => {
-                 // Prioritize same category
-                 if (a.category === item.category && b.category !== item.category) return -1;
-                 if (a.category !== item.category && b.category === item.category) return 1;
-                 // Then prioritize accessories if current is not accessory
-                 if (item.category !== 'accessoires') {
-                    if (a.category === 'accessoires' && b.category !== 'accessoires') return -1;
-                    if (a.category !== 'accessoires' && b.category === 'accessoires') return 1;
-                 }
-                 return 0;
-              })
-              .slice(0, 4)
+            items={(item as any).suggestedAccessories
+              ? equipmentItems.filter(i => (item as any).suggestedAccessories.includes(i.id))
+              : equipmentItems
+                  .filter(i => i.id !== item.id)
+                  .sort((a, b) => {
+                     // Prioritize same category
+                     if (a.category === item.category && b.category !== item.category) return -1;
+                     if (a.category !== item.category && b.category === item.category) return 1;
+                     // Then prioritize accessories if current is not accessory
+                     if (item.category !== 'accessoires') {
+                        if (a.category === 'accessoires' && b.category !== 'accessoires') return -1;
+                        if (a.category !== 'accessoires' && b.category === 'accessoires') return 1;
+                     }
+                     return 0;
+                  })
+                  .slice(0, 4)
             } 
           />
         </div>

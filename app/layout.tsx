@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,9 +60,11 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`${inter.className} overflow-x-hidden`}>
         <CartProvider>
-          <Header />
-          {children}
-          <Footer />
+          <WishlistProvider>
+            <Header />
+            {children}
+            <Footer />
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>
