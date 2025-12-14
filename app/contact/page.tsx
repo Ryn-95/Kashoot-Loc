@@ -13,10 +13,26 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
-    setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+    
+    const { firstName, lastName, email, subject, message } = formData;
+    const fullName = `${firstName} ${lastName}`;
+    
+    const subjectLabels: { [key: string]: string } = {
+      devis: 'Demande de devis',
+      info: 'Renseignement produit',
+      support: 'Support technique',
+      autre: 'Autre'
+    };
+    
+    const subjectText = subjectLabels[subject] || subject || 'Nouveau message';
+
+    const mailtoLink = `mailto:kashootcorp@gmail.com?subject=${encodeURIComponent(
+      `Contact Site: ${subjectText}`
+    )}&body=${encodeURIComponent(
+      `Nom: ${fullName}\nEmail: ${email}\nSujet: ${subjectText}\n\nMessage:\n${message}`
+    )}`;
+
+    window.location.href = mailtoLink;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
