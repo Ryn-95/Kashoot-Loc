@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import HomeClient from '@/components/sections/HomeClient';
 import { notFound } from 'next/navigation';
@@ -84,7 +85,9 @@ export default function CategoryPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <HomeClient initialCategoryProp={params.category} />
+      <Suspense fallback={<div className="min-h-screen bg-white" />}>
+        <HomeClient initialCategoryProp={params.category} />
+      </Suspense>
     </>
   );
 }

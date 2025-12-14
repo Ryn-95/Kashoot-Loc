@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -102,7 +103,9 @@ export default function RootLayout({
         />
         <CartProvider>
           <WishlistProvider>
-            <Header />
+            <Suspense fallback={<div className="h-20 bg-white" />}>
+              <Header />
+            </Suspense>
             {children}
             <Footer />
           </WishlistProvider>
