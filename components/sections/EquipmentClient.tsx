@@ -90,7 +90,12 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
   };
 
   // Ensure startDate and endDate min attributes are correct
-  const today = new Date().toISOString().split('T')[0];
+  // Use local time instead of UTC to avoid timezone issues (e.g. allowing yesterday selection after midnight)
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const today = `${year}-${month}-${day}`;
 
   return (
     <div className="bg-white min-h-screen pb-20 font-sans pt-[80px] md:pt-[88px]">
@@ -183,7 +188,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                  {/* Date Selection */}
                  <div className="space-y-4">
                     <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Période de location</label>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
                         <span className="text-[10px] text-neutral-400 font-medium ml-1">Du</span>
                         <input 
