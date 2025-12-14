@@ -88,8 +88,8 @@ export default function RootLayout({
         "Saturday",
         "Sunday"
       ],
-      opens: "00:00",
-      closes: "23:59"
+      opens: "08:00",
+      closes: "20:00"
     },
     priceRange: "$$"
   };

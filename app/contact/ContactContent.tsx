@@ -53,6 +53,10 @@ export default function ContactContent() {
                   +33 7 79 57 09 59
                 </a>
               </div>
+              <div>
+                <p className="font-medium text-neutral-900 mb-1">Horaires</p>
+                <p className="text-neutral-600">Lundi au dimanche 8h -20h</p>
+              </div>
             </div>
           </div>
 

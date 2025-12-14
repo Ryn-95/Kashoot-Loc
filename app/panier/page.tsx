@@ -153,7 +153,7 @@ export default function CartPage() {
                      `- ${item.quantity}x ${item.brand} ${item.model}\n  Du ${item.startDate} au ${item.endDate} (${item.duration})\n  Prix : ${(item.price * item.quantity).toFixed(2)}€`
                    ).join('\n\n')}\n\nSous-total : ${cartTotal.toFixed(2)}€\nTVA (20%) : ${(cartTotal * 0.2).toFixed(2)}€\nTotal : ${(cartTotal * 1.2).toFixed(2)}€`;
                    
-                   window.open(`https://wa.me/33600000000?text=${encodeURIComponent(message)}`, '_blank');
+                   window.open(`https://wa.me/33779570959?text=${encodeURIComponent(message)}`, '_blank');
                  }}
                  className="w-full bg-black text-white py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl mb-4"
                >

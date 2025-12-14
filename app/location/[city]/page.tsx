@@ -59,7 +59,7 @@ export default function LocationPage({ params }: Props) {
     name: `Kashoot Premium ${city.name}`,
     description: `Service de location de matériel vidéo et cinéma professionnel à ${city.name}.`,
     url: `https://www.kashootloc.fr/location/${city.slug}`,
-    telephone: '+33600000000',
+    telephone: '+33779570959',
     areaServed: {
       '@type': 'City',
       name: city.name
