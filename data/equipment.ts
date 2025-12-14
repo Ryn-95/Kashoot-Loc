@@ -250,7 +250,7 @@ export const equipmentItems = [
     badge: 'Nouveau',
     badgeType: 'blue',
     price: '5',
-    image: '/images/DJI Mic Mini Compact Wireless Mic.png',
+    image: '/images/DJIMicMini.png',
     available: true,
     colors: ['#000000']
   },
