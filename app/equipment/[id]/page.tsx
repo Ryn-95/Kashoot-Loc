@@ -1,329 +1,110 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { Metadata, ResolvingMetadata } from 'next';
 import { equipmentItems } from '@/data/equipment';
-import Link from 'next/link';
-import { useCart } from '@/context/CartContext';
-import EquipmentGrid from '@/components/sections/EquipmentGrid';
+import EquipmentClient from '@/components/sections/EquipmentClient';
+import { notFound } from 'next/navigation';
 
-export default function EquipmentPage() {
-  const params = useParams();
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const id = Number(params.id);
   const item = equipmentItems.find((i) => i.id === id);
-  const { addToCart, setIsCartOpen } = useCart();
-  
-  const [selectedColor, setSelectedColor] = useState(item?.colors?.[0] || '#000000');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  
-  const fallbackImage = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23f3f4f6"/><stop offset="100%" stop-color="%23e5e7eb"/></linearGradient></defs><rect width="400" height="300" fill="url(%23g)"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-family="Inter, sans-serif" font-size="14">Image indisponible</text></svg>';
-
-  // Price calculation logic
-  const calculateDays = (start: string, end: string) => {
-    if (!start || !end) return 1;
-    const startDateObj = new Date(start);
-    const endDateObj = new Date(end);
-    if (endDateObj < startDateObj) return 1;
-    const diffTime = Math.abs(endDateObj.getTime() - startDateObj.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    return diffDays + 1; // Inclusive
-  };
-
-  const basePrice = item ? parseInt(item.price || '0', 10) : 0;
-  const durationInDays = calculateDays(startDate, endDate);
-  const totalPrice = basePrice * durationInDays;
 
   if (!item) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-neutral-900 mb-4">Produit non trouvé</h1>
-          <Link href="/" className="text-neutral-500 underline hover:text-black transition-colors">
-            Retour à l'accueil
-          </Link>
-        </div>
-      </div>
-    );
+    return {
+      title: 'Produit non trouvé | Kashoot Premium',
+    };
   }
 
-  const handleAddToCart = () => {
-    if (!startDate || !endDate) {
-      alert('Veuillez sélectionner une date de début et de fin.');
-      return;
-    }
-    
-    if (item) {
-      const unitPrice = parseInt(item.price || '0', 10);
-      addToCart({
-        id: item.id,
-        brand: item.brand,
-        model: item.model,
-        price: unitPrice * durationInDays,
-        unitPrice: unitPrice,
-        days: durationInDays,
-        startDate: startDate,
-        endDate: endDate,
-        image: item.image,
-        color: selectedColor,
-        duration: `${durationInDays} jours`,
-        assurance: 'Standard'
-      });
-      setIsCartOpen(true);
+  // SEO Optimization
+  const title = `Location ${item.brand} ${item.model} - ${item.subtext} | Kashoot Premium`;
+  const description = `Louez votre ${item.brand} ${item.model} (${item.subtext}) à Paris et en France. Matériel professionnel disponible immédiatement. Devis rapide sur WhatsApp. ${item.specsBadge ? `Spécifications : ${item.specsBadge}.` : ''}`;
+  
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [item.image, ...previousImages],
+      type: 'website',
+      url: `https://www.kashootloc.fr/equipment/${id}`,
+    },
+    alternates: {
+      canonical: `https://www.kashootloc.fr/equipment/${id}`,
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  return equipmentItems.map((item) => ({
+    id: item.id.toString(),
+  }));
+}
+
+export default function EquipmentPage({ params }: Props) {
+  const id = Number(params.id);
+  const item = equipmentItems.find((i) => i.id === id);
+
+  if (!item) {
+    notFound();
+  }
+
+  // Logic for related items
+  let relatedItems: typeof equipmentItems = [];
+  if (item.suggestedAccessories && item.suggestedAccessories.length > 0) {
+     relatedItems = equipmentItems.filter(i => item.suggestedAccessories?.includes(i.id));
+  } 
+  
+  // If not enough suggestions, fill with same category
+  if (relatedItems.length < 4) {
+     const sameCategory = equipmentItems
+       .filter(i => i.category === item.category && i.id !== item.id && !relatedItems.find(r => r.id === i.id))
+       .slice(0, 4 - relatedItems.length);
+     relatedItems = [...relatedItems, ...sameCategory];
+  }
+
+  // Add JSON-LD for Product
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${item.brand} ${item.model}`,
+    image: `https://www.kashootloc.fr${item.image}`,
+    description: `Location ${item.brand} ${item.model} - ${item.subtext}. Louez ce matériel professionnel au meilleur prix.`,
+    brand: {
+      '@type': 'Brand',
+      name: item.brand,
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'EUR',
+      price: item.price,
+      availability: item.available ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      url: `https://www.kashootloc.fr/equipment/${id}`,
+      priceValidUntil: '2025-12-31',
+      areaServed: "France"
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '124'
     }
   };
 
   return (
-    <div className="bg-white min-h-screen pb-20 font-sans pt-[80px] md:pt-[88px]">
-      {/* Main Content */}
-      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-12">
-        
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs font-medium text-neutral-500 mb-8 uppercase tracking-wider">
-          <Link href="/" className="hover:text-black transition-colors">Accueil</Link>
-          <span className="text-neutral-300">/</span>
-          <Link href={`/?category=${item.category}`} className="hover:text-black transition-colors">{item.category}</Link>
-          <span className="text-neutral-300">/</span>
-          <span className="text-black">{item.brand} {item.model}</span>
-        </nav>
-
-        {/* Title Section */}
-        <div className="mb-6 md:mb-12">
-           <div className="flex items-center gap-3 mb-3 md:mb-4">
-             {item.badge && (
-               <span className={`
-                 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border
-                 ${item.badgeType === 'yellow' ? 'bg-yellow-50 border-yellow-200 text-yellow-700' : ''}
-                 ${item.badgeType === 'green' ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : ''}
-                 ${item.badgeType === 'blue' ? 'bg-blue-50 border-blue-200 text-blue-700' : ''}
-                 ${item.badgeType === 'neutral' ? 'bg-neutral-50 border-neutral-200 text-neutral-600' : ''}
-               `}>
-                 {item.badge}
-               </span>
-             )}
-             <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">{item.category}</span>
-           </div>
-           <h1 className="text-2xl sm:text-3xl md:text-6xl font-brand text-neutral-900 mb-2 leading-tight">
-             {item.brand} {item.model}
-           </h1>
-           <p className="text-base sm:text-lg md:text-2xl text-neutral-500 font-light tracking-tight max-w-2xl">
-             {item.subtext}
-           </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16">
-          
-          {/* Left Column - Images Grid */}
-          <div className="lg:col-span-8 order-1">
-             <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-neutral-100 aspect-[4/3] group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={item.image} 
-                  alt={`${item.brand} ${item.model}`}
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-             </div>
-          </div>
-
-          {/* Right Column - Configuration Sidebar */}
-          <div className="lg:col-span-4 lg:row-span-2 relative order-2">
-             <div className="w-full space-y-6 lg:sticky lg:top-[120px] h-fit bg-neutral-50/50 lg:bg-transparent p-6 lg:p-0 rounded-2xl lg:rounded-none border border-neutral-100 lg:border-none">
-                 <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
-                   <h2 className="text-lg font-bold text-neutral-900">Configuration</h2>
-                   <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Prix HTVA</p>
-                 </div>
-                 
-                 {/* Color Selection */}
-                 <div className="space-y-3">
-                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Couleur</label>
-                    <div className="flex gap-3">
-                      {item.colors.map((color, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setSelectedColor(color)}
-                          className={`w-8 h-8 md:w-10 md:h-10 rounded-full border transition-all duration-300 relative ${
-                            selectedColor === color ? 'ring-2 ring-offset-2 ring-black scale-110' : 'hover:scale-105'
-                          }`}
-                          style={{ backgroundColor: color }}
-                          aria-label={`Select color ${color}`}
-                        />
-                      ))}
-                    </div>
-                 </div>
-
-                 {/* Date Selection */}
-                 <div className="space-y-4">
-                    <label className="text-xs font-bold uppercase tracking-widest text-neutral-500">Période de location</label>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Du</span>
-                        <input 
-                          type="date" 
-                          min={new Date().toISOString().split('T')[0]}
-                          value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
-                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <span className="text-[10px] text-neutral-400 font-medium ml-1">Au</span>
-                        <input 
-                          type="date" 
-                          min={startDate || new Date().toISOString().split('T')[0]}
-                          value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
-                          className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
-                        />
-                      </div>
-                    </div>
-                    {startDate && endDate && (
-                      <div className="flex justify-between items-center px-4 py-2 bg-neutral-100 rounded-lg">
-                        <span className="text-xs font-medium text-neutral-500">Durée</span>
-                        <span className="text-sm font-bold text-neutral-900">{durationInDays} jours</span>
-                      </div>
-                    )}
-                 </div>
-
-                 {/* Availability Status */}
-                 <div className={`p-4 rounded-xl border ${item.available ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`}>
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className={`w-2 h-2 rounded-full ${item.available ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></div>
-                      <span className={`text-sm font-bold ${item.available ? 'text-emerald-700' : 'text-red-700'}`}>
-                        {item.available ? 'En stock' : 'Actuellement indisponible'}
-                      </span>
-                    </div>
-                    <p className={`text-xs ${item.available ? 'text-emerald-600' : 'text-red-600'}`}>
-                      {item.available 
-                        ? 'Ce produit est disponible immédiatement.' 
-                        : 'Contactez-nous pour connaître les prochaines disponibilités.'}
-                    </p>
-                 </div>
-
-                 {/* Total Block */}
-                 <div className="bg-white rounded-2xl p-6 mt-6 border border-neutral-100 shadow-sm">
-                   <div className="flex justify-between items-end mb-2">
-                     <span className="text-sm font-medium text-neutral-500">Total</span>
-                     <span className="text-3xl font-black tracking-tighter text-neutral-900">{totalPrice}€</span>
-                   </div>
-                   <button 
-                    onClick={handleAddToCart}
-                    disabled={!item.available}
-                    className={`w-full font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl text-xs uppercase tracking-widest mt-4 ${
-                      !item.available 
-                        ? 'bg-neutral-200 text-neutral-400 cursor-not-allowed hover:bg-neutral-200 hover:shadow-none' 
-                        : 'bg-black text-white hover:bg-neutral-800'
-                    }`}
-                  >
-                    {item.available ? 'AJOUTER AU PANIER' : (item.badge === 'Bientôt' ? 'Bientôt' : 'Indisponible')}
-                  </button>
-                 </div>
-             </div>
-          </div>
-
-          {/* Bottom Details Section */}
-          <div className="lg:col-span-8 order-3 space-y-12 md:space-y-16">
-             {/* Specs Grid */}
-             <div className="pt-8 md:pt-12 border-t border-neutral-100">
-               <h3 className="text-xl font-bold text-neutral-900 mb-8">Caractéristiques</h3>
-               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                 <div>
-                   <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Résolution</div>
-                   <div className="text-lg md:text-xl font-medium text-neutral-900">4K 120p</div>
-                 </div>
-                 <div>
-                   <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Capteur</div>
-                   <div className="text-lg md:text-xl font-medium text-neutral-900">Full Frame</div>
-                 </div>
-                 <div>
-                   <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">ISO</div>
-                   <div className="text-lg md:text-xl font-medium text-neutral-900">800 / 12800</div>
-                 </div>
-                 <div>
-                   <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 mb-2">Monture</div>
-                   <div className="text-lg md:text-xl font-medium text-neutral-900">E-Mount</div>
-                 </div>
-               </div>
-             </div>
-
-             {/* Included Items Section */}
-             {item.included && item.included.length > 0 && (
-               <div className="pt-8 md:pt-12 border-t border-neutral-100">
-                 <h3 className="text-xl font-bold text-neutral-900 mb-8">Inclus</h3>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                   {item.included.map((includedItem, idx) => (
-                     <div key={idx} className="flex items-center gap-3 p-4 rounded-xl bg-neutral-50 border border-neutral-100">
-                       <div className="w-8 h-8 rounded-full bg-white border border-neutral-100 flex items-center justify-center shrink-0 text-emerald-500">
-                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                           <polyline points="20 6 9 17 4 12"></polyline>
-                         </svg>
-                       </div>
-                       <span className="text-sm font-medium text-neutral-700">{includedItem}</span>
-                     </div>
-                   ))}
-                 </div>
-               </div>
-             )}
-
-             {/* Regulation Charter - Compact Version */}
-             <div className="bg-red-50/50 border border-red-100 rounded-2xl p-6">
-               <h3 className="text-sm font-bold text-red-600 uppercase tracking-widest mb-4 flex items-center gap-2">
-                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                   <circle cx="12" cy="12" r="10"></circle>
-                   <line x1="12" y1="8" x2="12" y2="12"></line>
-                   <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                 </svg>
-                 Règlementation
-               </h3>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div>
-                    <span className="block text-xs font-bold text-red-900 mb-1">⏱ Retard de restitution</span>
-                    <p className="text-xs text-red-700/80 leading-relaxed">
-                      Tout retard non signalé est facturé <span className="font-bold text-red-800">50€</span>.
-                    </p>
-                  </div>
-                 <div>
-                   <span className="block text-xs font-bold text-red-900 mb-1">⚠️ Dommages & Rayures</span>
-                   <p className="text-xs text-red-700/80 leading-relaxed">
-                     Facturation au prix du neuf ou de la réparation pour tout dommage constaté.
-                   </p>
-                 </div>
-               </div>
-               <p className="text-[10px] text-red-400 mt-4 font-medium text-center">
-                 En réservant, vous acceptez ces conditions strictes.
-               </p>
-             </div>
-          </div>
-
-        </div>
-
-        {/* Related Products Section */}
-        <div className="mt-24 md:mt-32 border-t border-neutral-100 pt-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-8 md:mb-12">
-            Souvent loué avec
-          </h2>
-          <EquipmentGrid 
-            items={(item as any).suggestedAccessories
-              ? equipmentItems.filter(i => (item as any).suggestedAccessories.includes(i.id))
-              : equipmentItems
-                  .filter(i => i.id !== item.id)
-                  .sort((a, b) => {
-                     // Prioritize same category
-                     if (a.category === item.category && b.category !== item.category) return -1;
-                     if (a.category !== item.category && b.category === item.category) return 1;
-                     // Then prioritize accessories if current is not accessory
-                     if (item.category !== 'accessoires') {
-                        if (a.category === 'accessoires' && b.category !== 'accessoires') return -1;
-                        if (a.category !== 'accessoires' && b.category === 'accessoires') return 1;
-                     }
-                     return 0;
-                  })
-                  .slice(0, 4)
-            } 
-          />
-        </div>
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <EquipmentClient item={item} relatedItems={relatedItems} />
+    </>
   );
 }

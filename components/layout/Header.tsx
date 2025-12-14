@@ -5,129 +5,28 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { equipmentItems } from '@/data/equipment';
 
-// Dropdown Content Components
-const MaterielContent = () => (
-  <div className="w-[800px] p-8">
-    <div className="flex gap-12">
-      <div className="w-1/3">
-        <h3 className="text-[12px] font-bold text-neutral-400 uppercase tracking-widest mb-6">Catégories</h3>
-        <div className="flex flex-col gap-3">
-          {[
-            { name: 'Caméras', href: '/?category=cameras' },
-            { name: 'Objectifs', href: '/?category=objectifs' },
-            { name: 'Lumières', href: '/?category=lumieres' },
-            { name: 'Audio', href: '/?category=audio' },
-            { name: 'Drones', href: '/?category=drones' }
-          ].map((cat) => (
-            <Link 
-              href={cat.href} 
-              key={cat.name} 
-              className="text-[15px] font-medium text-neutral-600 hover:text-black hover:translate-x-1 transition-all duration-200 flex items-center gap-2"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-200"></span>
-              {cat.name}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className="flex-1">
-        <h3 className="text-[12px] font-bold text-neutral-400 uppercase tracking-widest mb-6">Marques Populaires</h3>
-        <div className="grid grid-cols-2 gap-4">
-          {['Sony', 'Canon', 'RED', 'Arri', 'Blackmagic', 'DJI', 'Aputure', 'Profoto'].map((brand) => (
-            <Link href={`/?search=${brand}`} key={brand} className="flex items-center gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-all group text-left">
-              <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-400 group-hover:bg-black group-hover:text-white transition-all duration-300">
-                <span className="text-[10px] font-bold">{brand[0]}</span>
-              </div>
-              <span className="text-[14px] font-semibold text-neutral-900 group-hover:translate-x-1 transition-transform duration-200">{brand}</span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-    <div className="mt-8 pt-6 border-t border-neutral-100 flex justify-between items-center">
-      <Link href="/" className="text-[13px] font-bold text-neutral-900 hover:text-neutral-600 flex items-center gap-2 group transition-colors">
-        Voir tout le catalogue
-        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </Link>
-    </div>
-  </div>
-);
-
-const StudiosContent = () => (
-  <div className="w-[600px] p-8">
-    <h3 className="text-[12px] font-bold text-neutral-400 uppercase tracking-widest mb-6">Nos Studios par Ville</h3>
-    <div className="grid grid-cols-2 gap-4">
-      {['Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Lille', 'Nantes'].map((city) => (
-        <Link href={`/studios?city=${city}`} key={city} className="flex items-center justify-between p-4 rounded-2xl border border-neutral-100 hover:border-black hover:shadow-lg transition-all duration-300 group bg-white">
-          <span className="text-[15px] font-bold text-neutral-900">{city}</span>
-          <span className="w-8 h-8 rounded-full bg-neutral-50 flex items-center justify-center text-neutral-400 group-hover:bg-black group-hover:text-white transition-colors duration-300">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </span>
-        </Link>
-      ))}
-    </div>
-    <div className="mt-8 pt-6 border-t border-neutral-100">
-       <Link href="/studios" className="inline-flex items-center gap-2 text-[13px] font-bold text-neutral-900 hover:text-neutral-600 transition-colors">
-         Découvrir tous nos espaces
-         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-       </Link>
-    </div>
-  </div>
-);
-
-const ServicesContent = () => (
-  <div className="w-[700px] p-8">
-    <div className="grid grid-cols-2 gap-8">
-      <div>
-        <h3 className="text-[12px] font-bold text-neutral-400 uppercase tracking-widest mb-6">Logistique & Support</h3>
-        <div className="space-y-3">
-          {[
-            { name: 'Livraison Express', desc: 'Sur site en moins de 2h', href: '/services#livraison' },
-            { name: 'Assurance Tous Risques', desc: 'Couverture totale incluse', href: '/services#assurance' },
-            { name: 'Support Technique 24/7', desc: 'Une équipe dédiée', href: '/services#consulting' }
-          ].map((service) => (
-            <Link href={service.href} key={service.name} className="group block">
-              <div className="p-4 rounded-2xl hover:bg-neutral-50 transition-all duration-300 border border-transparent hover:border-neutral-100">
-                <div className="text-[15px] font-bold text-neutral-900 mb-1 group-hover:translate-x-1 transition-transform duration-200">{service.name}</div>
-                <div className="text-[13px] text-neutral-500">{service.desc}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 className="text-[12px] font-bold text-neutral-400 uppercase tracking-widest mb-6">Équipe Technique</h3>
-        <div className="space-y-3">
-          {[
-            { name: 'Assistant Caméra', desc: '1er et 2nd assistants', href: '/services#techniciens' },
-            { name: 'Chef Opérateur', desc: 'Pour vos productions', href: '/services#techniciens' },
-            { name: 'Ingénieur Son', desc: 'Prise de son et mixage', href: '/services#techniciens' }
-          ].map((job) => (
-            <Link href={job.href} key={job.name} className="group block">
-              <div className="p-4 rounded-2xl hover:bg-neutral-50 transition-all duration-300 border border-transparent hover:border-neutral-100">
-                <div className="text-[15px] font-bold text-neutral-900 mb-1 group-hover:translate-x-1 transition-transform duration-200">{job.name}</div>
-                <div className="text-[13px] text-neutral-500">{job.desc}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-);
+const categories = [
+  { id: 'tout', label: 'Tout' },
+  { id: 'cameras', label: 'Caméras' },
+  { id: 'objectifs', label: 'Objectifs' },
+  { id: 'lumieres', label: 'Lumières' },
+  { id: 'audio', label: 'Audio' },
+  { id: 'drones', label: 'Drones' }
+];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentCategory = searchParams.get('category') || 'tout';
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -172,15 +71,12 @@ export default function Header() {
     }
   };
 
-  const handleMouseEnter = (menu: string) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveDropdown(menu);
-  };
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 100);
+  const handleCategoryClick = (catId: string) => {
+    if (catId === 'tout') {
+      router.push('/');
+    } else {
+      router.push(`/?category=${catId}`);
+    }
   };
 
   return (
@@ -201,58 +97,29 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Center Navigation Pill (Desktop) */}
+          {/* Center Filter Pill (Desktop) */}
           <div 
             className={`hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
               scrolled ? 'top-1/2 -translate-y-1/2' : 'top-1/2 -translate-y-1/2'
             }`}
-            onMouseLeave={handleMouseLeave}
           >
             <div className="flex items-center bg-white/80 backdrop-blur-xl border border-white/40 rounded-full px-2 py-1.5 gap-1 shadow-sm hover:shadow-md transition-all duration-300 relative z-20">
-              <Link
-                href="/"
-                onMouseEnter={() => handleMouseEnter('materiel')}
-                className={`text-[13px] font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
-                  activeDropdown === 'materiel' || pathname === '/' ? 'bg-black text-white shadow-md' : 'text-neutral-600 hover:text-black hover:bg-white/50'
-                }`}
-              >
-                Matériel
-              </Link>
-              <Link
-                href="/studios"
-                onMouseEnter={() => handleMouseEnter('studios')}
-                className={`text-[13px] font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
-                  activeDropdown === 'studios' || pathname === '/studios' ? 'bg-black text-white shadow-md' : 'text-neutral-600 hover:text-black hover:bg-white/50'
-                }`}
-              >
-                Studios
-              </Link>
-              <Link
-                href="/services"
-                onMouseEnter={() => handleMouseEnter('services')}
-                className={`text-[13px] font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
-                  activeDropdown === 'services' || pathname === '/services' ? 'bg-black text-white shadow-md' : 'text-neutral-600 hover:text-black hover:bg-white/50'
-                }`}
-              >
-                Services
-              </Link>
-            </div>
-
-            {/* Dropdown Container */}
-            <div 
-              className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 transition-all duration-300 transform origin-top ${
-                activeDropdown ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 -translate-y-4 invisible'
-              }`}
-              onMouseEnter={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current);
-              }}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] border border-white/50 overflow-hidden ring-1 ring-black/5">
-                {activeDropdown === 'materiel' && <MaterielContent />}
-                {activeDropdown === 'studios' && <StudiosContent />}
-                {activeDropdown === 'services' && <ServicesContent />}
-              </div>
+              {categories.map((cat) => {
+                const isActive = currentCategory === cat.id || (cat.id === 'tout' && !currentCategory);
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleCategoryClick(cat.id)}
+                    className={`text-[13px] font-medium px-4 py-2 rounded-full transition-all duration-300 ${
+                      isActive 
+                        ? 'bg-black text-white shadow-md' 
+                        : 'text-neutral-600 hover:text-black hover:bg-white/50'
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -333,7 +200,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-3xl"
+            className="fixed inset-0 z-50 bg-white"
           >
             <div className="max-w-3xl mx-auto px-6 pt-32 relative h-full">
               <motion.div
@@ -446,9 +313,16 @@ export default function Header() {
               <h3 className="text-xs sm:text-sm font-bold text-neutral-400 uppercase tracking-widest mb-4">Menu</h3>
               <nav className="flex flex-col gap-3 sm:gap-4">
                 <Link href="/" className="text-xl sm:text-2xl font-bold text-neutral-900">Accueil</Link>
-                <Link href="/materiel" className="text-xl sm:text-2xl font-bold text-neutral-900">Matériel</Link>
-                <Link href="/studios" className="text-xl sm:text-2xl font-bold text-neutral-900">Studios</Link>
-                <Link href="/services" className="text-xl sm:text-2xl font-bold text-neutral-900">Services</Link>
+                {categories.filter(c => c.id !== 'tout').map(cat => (
+                  <Link 
+                    key={cat.id} 
+                    href={`/?category=${cat.id}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-xl sm:text-2xl font-bold text-neutral-900"
+                  >
+                    {cat.label}
+                  </Link>
+                ))}
                 <Link href="/contact" className="text-xl sm:text-2xl font-bold text-neutral-900">Contact</Link>
               </nav>
             </div>

@@ -26,13 +26,7 @@ export default function Footer() {
             <div className="flex gap-4">
               {/* Social Icons */}
               <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:bg-neutral-900 hover:text-white transition-all duration-300">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:bg-neutral-900 hover:text-white transition-all duration-300">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:bg-neutral-900 hover:text-white transition-all duration-300">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
               </a>
             </div>
           </div>
@@ -41,11 +35,11 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 mb-6">Découvrir</h4>
             <ul className="space-y-4">
-              <li><Link href="/cameras" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Caméras Cinéma</Link></li>
-              <li><Link href="/lenses" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Objectifs</Link></li>
-              <li><Link href="/lighting" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Éclairage</Link></li>
-              <li><Link href="/audio" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Audio</Link></li>
-              <li><Link href="/drones" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Drones</Link></li>
+              <li><Link href="/categories/cameras" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Caméras Cinéma</Link></li>
+              <li><Link href="/categories/objectifs" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Objectifs</Link></li>
+              <li><Link href="/categories/lumieres" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Éclairage</Link></li>
+              <li><Link href="/categories/audio" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Audio</Link></li>
+              <li><Link href="/categories/drones" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Drones</Link></li>
             </ul>
           </div>
 
@@ -53,13 +47,9 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 mb-6">Aide & Info</h4>
             <ul className="space-y-4">
-              <li><Link href="/how-it-works" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Comment ça marche</Link></li>
               <li><Link href="/insurance" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Assurance & Caution</Link></li>
               <li><Link href="/faq" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">FAQ</Link></li>
               <li><Link href="/contact" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Nous contacter</Link></li>
-              <li><Link href="/careers" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm flex items-center gap-2">
-                Carrières <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">Hiring</span>
-              </Link></li>
             </ul>
           </div>
 
@@ -82,15 +72,39 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* SEO Locations */}
+        <div className="border-t border-neutral-100 py-8">
+          <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-4">Zones de livraison</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {[
+              { name: 'Paris', slug: 'paris' },
+              { name: 'Lyon', slug: 'lyon' },
+              { name: 'Marseille', slug: 'marseille' },
+              { name: 'Bordeaux', slug: 'bordeaux' },
+              { name: 'Lille', slug: 'lille' },
+              { name: 'Nice', slug: 'nice' },
+              { name: 'Toulouse', slug: 'toulouse' },
+              { name: 'Nantes', slug: 'nantes' },
+              { name: 'Strasbourg', slug: 'strasbourg' },
+              { name: 'Montpellier', slug: 'montpellier' }
+            ].map((city) => (
+              <Link 
+                key={city.slug} 
+                href={`/location/${city.slug}`}
+                className="text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
+              >
+                Location {city.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-neutral-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-neutral-400">
             © {currentYear} Kashoot SAS. Tous droits réservés.
           </p>
           <div className="flex gap-6 text-xs text-neutral-500">
-            <Link href="/privacy" className="hover:text-neutral-900 transition-colors">Confidentialité</Link>
-            <Link href="/terms" className="hover:text-neutral-900 transition-colors">CGV</Link>
-            <Link href="/cookies" className="hover:text-neutral-900 transition-colors">Cookies</Link>
           </div>
         </div>
       </div>

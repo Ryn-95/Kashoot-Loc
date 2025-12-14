@@ -7,10 +7,10 @@ import Catalog from '@/components/sections/Catalog';
 import Preloader from '@/components/ui/Preloader';
 import CategoryNav from '@/components/layout/CategoryNav';
 
-export default function HomeClient() {
+export default function HomeClient({ initialCategoryProp }: { initialCategoryProp?: string }) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const initialCategory = searchParams.get('category') || 'tout';
+  const initialCategory = initialCategoryProp || searchParams.get('category') || 'tout';
   const initialSearch = searchParams.get('search') || '';
   
   const [activeCategory, setActiveCategory] = useState(initialCategory);

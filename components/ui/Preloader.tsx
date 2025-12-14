@@ -32,7 +32,7 @@ export default function Preloader() {
       }`}
     >
       <div className="flex flex-col items-center">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden pr-4">
           <span className="text-5xl md:text-7xl font-black italic tracking-tighter text-white animate-slide-up block">
             KASHOOT
           </span>

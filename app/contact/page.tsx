@@ -41,19 +41,19 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">Nos Bureaux</h3>
                 <p className="text-xl font-bold text-neutral-900">
-                  123 Avenue des Champs-Élysées<br />
-                  75008 Paris, France
+                  1 rue jean chaptal<br />
+                  Aulnay-sous-Bois, France
                 </p>
               </div>
 
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-4">Contact Direct</h3>
                 <div className="space-y-2">
-                  <a href="mailto:hello@kashootloc.fr" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
-                    hello@kashootloc.fr
+                  <a href="mailto:kashootcorp@gmail.com" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
+                    kashootcorp@gmail.com
                   </a>
-                  <a href="tel:+33123456789" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
-                    +33 1 23 45 67 89
+                  <a href="tel:+33779570959" className="block text-xl font-bold text-neutral-900 hover:text-blue-600 transition-colors">
+                    +33 7 79 57 09 59
                   </a>
                 </div>
               </div>

@@ -13,13 +13,9 @@ export const equipmentItems = [
     imageFit: 'cover',
     available: true,
     suggestedAccessories: [42, 5, 14],
-    colors: [
-      '#000000'
-    ],
-    included: [
-      '2 Batteries',
-      'Chargeur'
-    ]
+    colors: ['#000000'],
+    included: ['2 Batteries', 'Chargeur'],
+    seoDescription: "Location Sony A7S III Paris. La référence pour les vidéastes : 4K 120p, 10-bit 4:2:2, sensibilité ISO incroyable. Idéal pour clips, mariages et documentaires."
   },
   {
     id: 5,
@@ -33,15 +29,9 @@ export const equipmentItems = [
     price: '30',
     image: '/images/Sony 24-70mm GM II f:2.8 G Master.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#000000'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Location Sony 24-70mm f/2.8 GM II. Le zoom standard le plus polyvalent et léger de la gamme G Master. Piqué exceptionnel pour tout type de tournage."
   },
   {
     id: 14,
@@ -55,13 +45,9 @@ export const equipmentItems = [
     price: '20',
     image: '/images/RS4PRO.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Batterie',
-      'Chargeur'
-    ]
+    colors: ['#000000'],
+    included: ['Batterie', 'Chargeur'],
+    seoDescription: "Louer DJI RS 4 Pro Paris. Stabilisateur gimbal capable de supporter des caméras cinéma jusqu'à 4.5kg. Indispensable pour des plans fluides."
   },
   {
     id: 16,
@@ -75,9 +61,8 @@ export const equipmentItems = [
     price: '10',
     image: '/images/Rode Wireless PRO Wireless Mic System.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000'],
+    seoDescription: "Location Rode Wireless PRO. Micro cravate sans fil avec enregistrement 32-bit float pour ne jamais saturer votre son. Le must pour les interviews."
   },
   {
     id: 26,
@@ -88,20 +73,12 @@ export const equipmentItems = [
     specsBadge: 'Bi-Color',
     badge: 'Pack Duo',
     badgeType: 'blue',
-    price: '15',
+    price: '10',
     image: '/images/NEEWER Kit 660 LED (x2) Panneaux LED.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      '4 Batteries',
-      'Chargeur',
-      '2 Trépieds',
-      'Adaptateurs secteur',
-      'Câbles d\'alimentation',
-      '2 Mallettes de transport'
-    ]
+    colors: ['#000000'],
+    included: ['4 Batteries', 'Chargeur', '2 Trépieds', 'Adaptateurs secteur', 'Câbles d\'alimentation', '2 Mallettes de transport'],
+    seoDescription: "Location Kit Lumière LED Neewer. Pack complet de 2 panneaux LED bi-color sur batterie. Solution d'éclairage portable et efficace pour interviews et fictions."
   },
   {
     id: 2,
@@ -116,13 +93,9 @@ export const equipmentItems = [
     image: '/images/Sony A7 IV.png',
     available: true,
     suggestedAccessories: [42, 6, 16],
-    colors: [
-      '#000000'
-    ],
-    included: [
-      '2 Batteries',
-      'Chargeur'
-    ]
+    colors: ['#000000'],
+    included: ['2 Batteries', 'Chargeur'],
+    seoDescription: "Location Sony A7 IV Paris. L'hybride parfait photo/vidéo. Capteur 33MP, 4K 60p, autofocus temps réel. Excellent pour l'événementiel et le corporate."
   },
   {
     id: 6,
@@ -136,15 +109,9 @@ export const equipmentItems = [
     price: '35',
     image: '/images/Sony 70-200mm GM II.png',
     available: true,
-    colors: [
-      '#f0f0f0'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#f0f0f0'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Location Sony 70-200mm f/2.8 GM II. Téléobjectif de référence, ultra-rapide et léger. Bokeh magnifique pour portraits et sport."
   },
   {
     id: 13,
@@ -158,13 +125,9 @@ export const equipmentItems = [
     price: '25',
     image: '/images/DJI Mini 4 Pro .webp',
     available: true,
-    colors: [
-      '#999999'
-    ],
-    included: [
-      '2 Batteries',
-      'Chargeur'
-    ]
+    colors: ['#999999'],
+    included: ['2 Batteries', 'Chargeur'],
+    seoDescription: "Location DJI Mini 4 Pro. Drone compact <249g, pas de permis nécessaire en ville (sous conditions). Vidéo 4K 60p HDR verticale native."
   },
   {
     id: 3,
@@ -178,16 +141,9 @@ export const equipmentItems = [
     price: '5',
     image: '/images/DJI Osmo Pocket 3 Créatif.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Micro + Bonnette',
-      'Chargeur',
-      'Micro SD 256Go + Adaptateur',
-      'Sac de transport',
-      'Objectif Grand Angle'
-    ]
+    colors: ['#000000'],
+    included: ['Micro + Bonnette', 'Chargeur', 'Micro SD 256Go + Adaptateur', 'Sac de transport', 'Objectif Grand Angle'],
+    seoDescription: "Louer DJI Osmo Pocket 3. La caméra de vlog ultime avec capteur 1 pouce. Stabilisation mécanique incroyable dans votre poche."
   },
   {
     id: 25,
@@ -201,9 +157,8 @@ export const equipmentItems = [
     price: '15',
     image: '/images/AtomosNinjaVMonitorRecorder.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000'],
+    seoDescription: "Location Atomos Ninja V. Moniteur enregistreur 5 pouces HDR. Débloquez le RAW de votre caméra et monitorez avec précision."
   },
   {
     id: 17,
@@ -214,15 +169,12 @@ export const equipmentItems = [
     specsBadge: 'Bi-Color',
     badge: null,
     badgeType: 'neutral',
-    price: '10',
+    price: '5',
     image: '/images/Aputure Amaran AL-F7 LED Panel.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Batterie incluse'
-    ]
+    colors: ['#000000'],
+    included: ['Batterie incluse'],
+    seoDescription: "Location petite lumière LED Aputure. Compacte et puissante, idéale comme 'hair light' ou lumière d'appoint."
   },
   {
     id: 4,
@@ -236,9 +188,8 @@ export const equipmentItems = [
     price: '5',
     image: '/images/GoPro Hero 13 Black.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000'],
+    seoDescription: "Louer GoPro Hero 13 Black. La caméra d'action la plus performante. Stabilisation HyperSmooth 6.0, étanche et robuste."
   },
   {
     id: 29,
@@ -252,13 +203,9 @@ export const equipmentItems = [
     price: '10',
     image: '/images/Ray-Ban Meta Wayfarer.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Étui de chargement',
-      'Câble USB-C'
-    ]
+    colors: ['#000000'],
+    included: ['Étui de chargement', 'Câble USB-C'],
+    seoDescription: "Location lunettes Ray-Ban Meta. Filmez en POV (Point of View) pour vos réseaux sociaux avec style."
   },
   {
     id: 10,
@@ -272,15 +219,9 @@ export const equipmentItems = [
     price: '30',
     image: '/images/Sony 50mm GM f:1.2 G Master.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#000000'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Louer Sony 50mm f/1.2 GM. L'objectif portrait par excellence. Ouverture ultra-lumineuse f/1.2 pour un flou d'arrière-plan magique."
   },
   {
     id: 15,
@@ -295,12 +236,9 @@ export const equipmentItems = [
     image: '/images/Insta360 Flow Pro Smartphone Stabilizer.png',
     imageFit: 'cover',
     available: true,
-    colors: [
-      '#ffffff'
-    ],
-    included: [
-      'Câbles fournis'
-    ]
+    colors: ['#ffffff'],
+    included: ['Câbles fournis'],
+    seoDescription: "Location stabilisateur smartphone Insta360 Flow. Suivi IA automatique pour vlogs et créateurs de contenu mobile."
   },
   {
     id: 27,
@@ -314,9 +252,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/DJI Mic Mini Compact Wireless Mic.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 12,
@@ -330,15 +266,9 @@ export const equipmentItems = [
     price: '25',
     image: '/images/sony 14mm gm f:1.8 g master.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#000000'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Location Sony 14mm f/1.8 GM. Ultra grand-angle lumineux pour l'architecture, l'immobilier et l'astrophotographie."
   },
   {
     id: 18,
@@ -352,12 +282,8 @@ export const equipmentItems = [
     price: '5',
     image: '/images/Godox V860IIIS Speedlite Flash.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Chargeur'
-    ]
+    colors: ['#000000'],
+    included: ['Chargeur']
   },
   {
     id: 11,
@@ -371,15 +297,9 @@ export const equipmentItems = [
     price: '20',
     image: '/images/Sony 16-35mm GM f:2.8 G Master.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#000000'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Louer Sony 16-35mm f/2.8 GM. Le zoom grand-angle incontournable pour le paysage et le reportage."
   },
   {
     id: 9,
@@ -393,15 +313,9 @@ export const equipmentItems = [
     price: '25',
     image: '/images/Sony 35mm GM f:1.4 G Master.png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#000000'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Location Sony 35mm f/1.4 GM. La focale reportage préférée des pros. Piqué chirurgical et bokeh doux."
   },
   {
     id: 28,
@@ -415,9 +329,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/MICRO.png.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 7,
@@ -431,15 +343,9 @@ export const equipmentItems = [
     price: '20',
     image: '/images/Sony 200-600mm G.png',
     available: true,
-    colors: [
-      '#f0f0f0'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#f0f0f0'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse'],
+    seoDescription: "Location Sony 200-600mm G. Super télézoom pour l'animalier et le sport à longue distance."
   },
   {
     id: 8,
@@ -453,15 +359,8 @@ export const equipmentItems = [
     price: '25',
     image: '/images/Sony 100-400mm GM.png',
     available: true,
-    colors: [
-      '#f0f0f0'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#f0f0f0'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse']
   },
   {
     id: 20,
@@ -475,9 +374,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/Cayer BV30L Trépied Vidéo Professional Tripod.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 22,
@@ -491,9 +388,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/LexarProfessional 128GoCarteSDV60.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 31,
@@ -507,9 +402,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/SMALLRIG PoignéeSupérieureTopHandle.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 21,
@@ -524,9 +417,7 @@ export const equipmentItems = [
     image: '/images/NEEWER Monopode TP77.png',
     imageFit: 'cover',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 33,
@@ -540,9 +431,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/SMALLRIG Cage CaméraProtection&Mounts.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 23,
@@ -553,12 +442,10 @@ export const equipmentItems = [
     specsBadge: 'Heavy Duty',
     badge: null,
     badgeType: 'neutral',
-    price: '15',
+    price: '5',
     image: '/images/GenericVentouseVoitureCarMount.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 40,
@@ -572,9 +459,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/DJI RS Poignée Batterie.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 32,
@@ -588,9 +473,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/SMALLRIGKitMini-PoignéeLatérale.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 39,
@@ -605,9 +488,7 @@ export const equipmentItems = [
     image: '/images/Manfrotto Element MII .png',
     imageFit: 'cover',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 30,
@@ -622,9 +503,7 @@ export const equipmentItems = [
     image: '/images/Manbily Monopode Extensible.png',
     imageFit: 'cover',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 41,
@@ -638,9 +517,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/Sony Batterie NP-FZ100.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 34,
@@ -654,15 +531,8 @@ export const equipmentItems = [
     price: '0',
     image: '/images/Sony FE 300mm F2.8 GM.png',
     available: false,
-    colors: [
-      '#f0f0f0'
-    ],
-    included: [
-      'Bouchon avant',
-      'Bouchon arrière',
-      'Un pare-soleil',
-      'Une housse'
-    ]
+    colors: ['#f0f0f0'],
+    included: ['Bouchon avant', 'Bouchon arrière', 'Un pare-soleil', 'Une housse']
   },
   {
     id: 35,
@@ -676,9 +546,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/INSTA360.png',
     available: false,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 36,
@@ -692,9 +560,7 @@ export const equipmentItems = [
     price: '15',
     image: '/images/AtomosNINJAULTRAComingSoon.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 37,
@@ -708,9 +574,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/SMALLRIGMiniFollowFocusComingSoon.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 38,
@@ -724,9 +588,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/K&F CONCEPTHousse dePluie.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 42,
@@ -740,9 +602,7 @@ export const equipmentItems = [
     price: '5',
     image: '/images/sandisk256GB.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   },
   {
     id: 43,
@@ -756,14 +616,8 @@ export const equipmentItems = [
     price: '5',
     image: '/images/Ecouteur sony .png',
     available: true,
-    colors: [
-      '#000000'
-    ],
-    included: [
-      'Boîtier de charge',
-      'Câble USB-C',
-      'Embouts (S/M/L)'
-    ]
+    colors: ['#000000'],
+    included: ['Boîtier de charge', 'Câble USB-C', 'Embouts (S/M/L)']
   },
   {
     id: 44,
@@ -777,8 +631,6 @@ export const equipmentItems = [
     price: '5',
     image: '/images/Sac pour sony.png',
     available: true,
-    colors: [
-      '#000000'
-    ]
+    colors: ['#000000']
   }
 ];

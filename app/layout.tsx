@@ -18,25 +18,25 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kashootloc.fr'),
   title: {
-    default: "Kashoot - Location de matériel vidéo professionnel",
-    template: "%s | Kashoot",
+    default: "Kashoot Premium - Location Matériel Vidéo, Cinéma & Broadcast Paris",
+    template: "%s | Kashoot Premium",
   },
-  description: "Location de matériel vidéo et photo professionnel haut de gamme pour vos projets créatifs.",
-  keywords: ["location matériel vidéo", "location caméra", "location matériel photo", "équipement vidéo professionnel", "location matériel cinéma"],
-  authors: [{ name: "Kashoot" }],
-  creator: "Kashoot",
+  description: "Location de caméras (Sony, RED, Arri), objectifs, drones et éclairage à Paris. Matériel audiovisuel professionnel disponible immédiatement. Devis WhatsApp.",
+  keywords: ["location matériel vidéo", "location caméra Paris", "location Sony A7S III", "location drone DJI", "location matériel cinéma", "louer objectif G Master", "location lumière tournage"],
+  authors: [{ name: "Kashoot Premium" }],
+  creator: "Kashoot Premium",
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://www.kashootloc.fr",
-    title: "Kashoot - Location de matériel vidéo professionnel",
-    description: "Location de matériel vidéo et photo professionnel haut de gamme.",
-    siteName: "Kashoot",
+    title: "Kashoot Premium - Location Matériel Vidéo & Cinéma",
+    description: "Le service de location audiovisuelle nouvelle génération. Matériel pro, dispo immédiate, zéro paperasse.",
+    siteName: "Kashoot Premium",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kashoot - Location de matériel vidéo professionnel",
-    description: "Location de matériel vidéo et photo professionnel haut de gamme.",
+    title: "Kashoot Premium - Location Matériel Vidéo",
+    description: "Location matériel audiovisuel professionnel à Paris.",
   },
   robots: {
     index: true,
@@ -56,9 +56,50 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Kashoot Premium',
+    image: 'https://www.kashootloc.fr/images/logo.png',
+    '@id': 'https://www.kashootloc.fr',
+    url: 'https://www.kashootloc.fr',
+    telephone: '+33779570959',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '1 rue jean chaptal',
+      addressLocality: 'Aulnay-sous-Bois',
+      postalCode: '93600',
+      addressCountry: 'FR'
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 48.8566,
+      longitude: 2.3522
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      opens: "00:00",
+      closes: "23:59"
+    },
+    priceRange: "$$"
+  };
+
   return (
     <html lang="fr">
       <body className={`${inter.className} overflow-x-hidden`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <CartProvider>
           <WishlistProvider>
             <Header />
@@ -70,4 +111,3 @@ export default function RootLayout({
     </html>
   );
 }
-
