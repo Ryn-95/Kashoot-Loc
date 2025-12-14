@@ -156,7 +156,7 @@ export const equipmentItems = [
     badgeType: 'neutral',
     price: '15',
     image: '/images/AtomosNinjaVMonitorRecorder.png',
-    available: true,
+    available: false,
     colors: ['#000000'],
     seoDescription: "Location Atomos Ninja V. Moniteur enregistreur 5 pouces HDR. Débloquez le RAW de votre caméra et monitorez avec précision."
   },
@@ -559,7 +559,7 @@ export const equipmentItems = [
     badgeType: 'blue',
     price: '15',
     image: '/images/AtomosNINJAULTRAComingSoon.png',
-    available: true,
+    available: false,
     colors: ['#000000']
   },
   {
