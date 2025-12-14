@@ -313,6 +313,16 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                      Facturation au prix du neuf ou de la réparation pour tout dommage constaté.
                    </p>
                  </div>
+                 
+                 {item.category === 'cameras' && (
+                   <div className="md:col-span-2 pt-2 border-t border-red-200/50">
+                     <span className="block text-xs font-bold text-red-900 mb-1">📷 Déclenchements (Shutter Count)</span>
+                     <p className="text-xs text-red-700/80 leading-relaxed">
+                       Maximum <span className="font-bold text-red-800">2500 déclenchements / jour</span> inclus. 
+                       Au-delà, un supplément sera facturé.
+                     </p>
+                   </div>
+                 )}
                </div>
                <p className="text-[10px] text-red-400 mt-4 font-medium text-center">
                  En réservant, vous acceptez ces conditions strictes.
