@@ -43,12 +43,14 @@ export default function ContactContent() {
                 </a>
               </div>
               <div>
-                <p className="font-medium text-neutral-900 mb-1">Téléphone</p>
+                <p className="font-medium text-neutral-900 mb-1">Téléphone (WhatsApp)</p>
                 <a
-                  href="tel:0779570959"
+                  href="https://wa.me/33779570959"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-neutral-900 transition-colors underline"
                 >
-                  0779570959
+                  +33 7 79 57 09 59
                 </a>
               </div>
             </div>

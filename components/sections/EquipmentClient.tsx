@@ -89,6 +89,9 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
     }
   };
 
+  // Ensure startDate and endDate min attributes are correct
+  const today = new Date().toISOString().split('T')[0];
+
   return (
     <div className="bg-white min-h-screen pb-20 font-sans pt-[80px] md:pt-[88px]">
       {/* Main Content */}
@@ -185,7 +188,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                         <span className="text-[10px] text-neutral-400 font-medium ml-1">Du</span>
                         <input 
                           type="date" 
-                          min={new Date().toISOString().split('T')[0]}
+                          min={today}
                           value={startDate}
                           onChange={(e) => setStartDate(e.target.value)}
                           className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
@@ -195,7 +198,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                         <span className="text-[10px] text-neutral-400 font-medium ml-1">Au</span>
                         <input 
                           type="date" 
-                          min={startDate || new Date().toISOString().split('T')[0]}
+                          min={startDate || today}
                           value={endDate}
                           onChange={(e) => setEndDate(e.target.value)}
                           className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
