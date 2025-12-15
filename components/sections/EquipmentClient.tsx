@@ -362,7 +362,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {relatedItems.map((relatedItem) => (
                 <div key={relatedItem.id} className="group">
-                  <div className="relative aspect-[4/3] mb-4 overflow-hidden rounded-2xl bg-neutral-100">
+                  <Link href={`/equipment/${relatedItem.id}`} className="block relative aspect-[4/3] mb-4 overflow-hidden rounded-2xl bg-neutral-100">
                     <img 
                       src={relatedItem.image} 
                       alt={relatedItem.model}
@@ -378,8 +378,10 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                          {relatedItem.badge}
                        </span>
                     )}
-                  </div>
-                  <h4 className="text-sm font-bold text-neutral-900">{relatedItem.brand} {relatedItem.model}</h4>
+                  </Link>
+                  <Link href={`/equipment/${relatedItem.id}`} className="block">
+                    <h4 className="text-sm font-bold text-neutral-900 group-hover:text-neutral-600 transition-colors">{relatedItem.brand} {relatedItem.model}</h4>
+                  </Link>
                   <p className="text-xs text-neutral-500 mb-2">{relatedItem.subtext}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-bold text-neutral-900">{relatedItem.price}€<span className="text-[10px] font-normal text-neutral-500">/jour</span></span>
