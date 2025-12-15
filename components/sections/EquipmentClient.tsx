@@ -43,7 +43,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
     if (endDateObj < startDateObj) return 1;
     const diffTime = Math.abs(endDateObj.getTime() - startDateObj.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    return diffDays + 1; // Inclusive
+    return Math.max(1, diffDays);
   };
 
   const basePrice = item ? parseInt(item.price || '0', 10) : 0;
@@ -211,9 +211,14 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                       </div>
                     </div>
                     {startDate && endDate && (
-                      <div className="flex justify-between items-center px-4 py-2 bg-neutral-100 rounded-lg">
-                        <span className="text-xs font-medium text-neutral-500">Durée</span>
-                        <span className="text-sm font-bold text-neutral-900">{durationInDays} jours</span>
+                      <div className="mt-3">
+                        <div className="flex justify-between items-center px-4 py-2 bg-neutral-100 rounded-lg mb-2">
+                          <span className="text-xs font-medium text-neutral-500">Durée</span>
+                          <span className="text-sm font-bold text-neutral-900">{durationInDays} {durationInDays > 1 ? 'jours' : 'jour'}</span>
+                        </div>
+                        <p className="text-[10px] text-neutral-400 text-center">
+                          Une journée de location = 24h (ex: du {startDate.split('-').reverse().join('/')} à 12h au {endDate.split('-').reverse().join('/')} à 12h)
+                        </p>
                       </div>
                     )}
                  </div>
