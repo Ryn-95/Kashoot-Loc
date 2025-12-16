@@ -142,7 +142,7 @@ export const equipmentItems = [
     image: '/images/DJI Osmo Pocket 3 Créatif.png',
     available: true,
     colors: ['#000000'],
-    included: ['Micro + Bonnette', 'Chargeur', 'Micro SD 256Go + Adaptateur', 'Sac de transport', 'Objectif Grand Angle'],
+    included: ['Micro + Bonnette', 'Chargeur', 'Sac de transport', 'Objectif Grand Angle'],
     seoDescription: "Louer DJI Osmo Pocket 3. La caméra de vlog ultime avec capteur 1 pouce. Stabilisation mécanique incroyable dans votre poche."
   },
   {

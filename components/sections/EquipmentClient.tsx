@@ -152,7 +152,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                 <img 
                   src={item.image} 
                   alt={`Location ${item.brand} ${item.model} - Kashoot Premium`}
-                  className={`w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 ${item.imageFit === 'cover' ? 'object-cover' : 'object-contain p-12'}`}
+                  className={`w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105 ${item.imageFit === 'cover' ? 'object-cover' : 'object-contain p-12'}`}
                   onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
