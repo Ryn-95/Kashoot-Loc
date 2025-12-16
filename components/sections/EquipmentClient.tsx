@@ -259,6 +259,42 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                     Devis final et disponibilité confirmés via WhatsApp
                   </p>
                  </div>
+
+                 {/* Conditions Summary */}
+                 <div className="mt-4 p-4 bg-neutral-50 rounded-xl border border-neutral-200 space-y-3">
+                   <div className="flex items-start gap-3">
+                     <div className="p-1.5 bg-white rounded-md border border-neutral-100 shadow-sm">
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-900"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                     </div>
+                     <div>
+                       <span className="block text-xs font-bold text-neutral-900 uppercase tracking-wide">Livraison & Installation</span>
+                       <p className="text-[10px] text-neutral-500 leading-tight mt-0.5">Nous nous déplaçons pour l'installation sur site.</p>
+                     </div>
+                   </div>
+                   
+                   <div className="pt-3 border-t border-neutral-200/50 flex items-start gap-3">
+                     <div className="p-1.5 bg-white rounded-md border border-neutral-100 shadow-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-600"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                     </div>
+                     <div>
+                       <span className="block text-xs font-bold text-neutral-900 uppercase tracking-wide">Conditions</span>
+                       <ul className="text-[10px] text-neutral-500 space-y-1 mt-1">
+                         <li className="flex items-center gap-1.5">
+                           <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                           Retard : <span className="font-bold text-neutral-900">50€</span>
+                         </li>
+                         <li className="flex items-center gap-1.5">
+                           <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                           Sale : <span className="font-bold text-neutral-900">Frais de nettoyage</span>
+                         </li>
+                         <li className="flex items-center gap-1.5">
+                           <span className="w-1 h-1 rounded-full bg-red-500"></span>
+                           Casse : <span className="font-bold text-neutral-900">Facturé</span>
+                         </li>
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
              </div>
           </div>
 
