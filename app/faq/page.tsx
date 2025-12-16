@@ -31,8 +31,12 @@ export default function FAQPage() {
       answer: "Le matériel est sous votre responsabilité durant la location. Nous recommandons fortement de souscrire à une assurance production couvrant le bris de machine et le vol. Nous pouvons vous conseiller des partenaires."
     },
     {
-      question: "Faites-vous la livraison ?",
-      answer: "Oui, nous proposons un service de livraison par coursier sur Paris et l'Île-de-France. Pour les autres villes, une expédition sécurisée est possible sous conditions. Contactez-nous pour un devis."
+      question: "Faites-vous la livraison et l'installation ?",
+      answer: "Oui, nous proposons un service de livraison et d'installation sur site. Notre équipe peut se déplacer pour vous assister dans la mise en place du matériel. Contactez-nous pour connaître les tarifs et disponibilités."
+    },
+    {
+      question: "Que se passe-t-il si je rends le matériel sale ?",
+      answer: "Le matériel doit être restitué dans le même état de propreté qu'au départ. Si un nettoyage approfondi est nécessaire au retour, des frais de remise en état vous seront facturés (dédommagement nettoyage)."
     },
     {
       question: "Puis-je annuler ma réservation ?",

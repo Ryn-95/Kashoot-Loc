@@ -152,7 +152,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                 <img 
                   src={item.image} 
                   alt={`Location ${item.brand} ${item.model} - Kashoot Premium`}
-                  className={`w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105 ${item.imageFit === 'cover' ? 'object-cover' : 'object-contain p-12'}`}
+                  className="w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105 object-cover"
                   onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -336,6 +336,14 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                      </p>
                    </div>
                  )}
+                 
+                 <div className="md:col-span-2 pt-2 border-t border-red-200/50">
+                    <span className="block text-xs font-bold text-red-900 mb-1">📦 Services & Propreté</span>
+                    <p className="text-xs text-red-700/80 leading-relaxed">
+                      Livraison et Installation sur site disponible. 
+                      <span className="block mt-1">Des frais de remise en état seront appliqués si le matériel est rendu sale.</span>
+                    </p>
+                 </div>
                </div>
                <p className="text-[10px] text-red-400 mt-4 font-medium text-center">
                  En réservant, vous acceptez ces conditions strictes.
