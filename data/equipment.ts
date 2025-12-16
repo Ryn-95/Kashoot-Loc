@@ -140,6 +140,7 @@ export const equipmentItems = [
     badgeType: 'neutral',
     price: '5',
     image: '/images/DJI Osmo Pocket 3 Créatif.png',
+    imageFit: 'cover',
     available: true,
     colors: ['#000000'],
     included: ['Micro + Bonnette', 'Chargeur', 'Sac de transport', 'Objectif Grand Angle'],
