@@ -97,76 +97,72 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* Center Filter Pill (Desktop) */}
-          <div 
-            className={`hidden md:flex items-center justify-center absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
-              scrolled ? 'top-1/2 -translate-y-1/2' : 'top-1/2 -translate-y-1/2'
-            }`}
-          >
-            <div className="flex items-center bg-white/80 backdrop-blur-xl border border-white/40 rounded-full px-2 py-1.5 gap-1 shadow-sm hover:shadow-md transition-all duration-300 relative z-20">
-              {categories.map((cat) => {
-                const isActive = currentCategory === cat.id || (cat.id === 'tout' && !currentCategory);
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => handleCategoryClick(cat.id)}
-                    className={`text-[13px] font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                      isActive 
-                        ? 'bg-black text-white shadow-md' 
-                        : 'text-neutral-600 hover:text-black hover:bg-white/50'
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                );
-              })}
+          <div className="hidden md:flex items-center gap-1">
+            <div className="bg-neutral-100/80 backdrop-blur-md rounded-full p-1.5 flex items-center shadow-inner border border-white/20">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => handleCategoryClick(cat.id)}
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
+                    currentCategory === cat.id
+                      ? 'text-white shadow-lg'
+                      : 'text-neutral-500 hover:text-black hover:bg-white/50'
+                  }`}
+                >
+                  {currentCategory === cat.id && (
+                    <motion.div
+                      layoutId="activeCategory"
+                      className="absolute inset-0 bg-black rounded-full"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat.label}</span>
+                </button>
+              ))}
             </div>
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3 relative z-30">
+          <div className="flex items-center gap-2 sm:gap-4 relative z-30">
             {/* Search Button */}
             <button 
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="w-10 h-10 flex items-center justify-center text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors"
+              onClick={() => setIsSearchOpen(true)}
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-neutral-200 transition-colors group"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 group-hover:text-black transition-colors">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
             </button>
 
-            <Link 
-              href="/contact" 
-              className="hidden md:flex items-center justify-center h-10 px-6 text-[13px] font-bold uppercase tracking-wide text-neutral-900 border border-neutral-200 rounded-full hover:bg-black hover:text-white hover:border-black transition-all duration-300"
-            >
-              Contact
+            {/* Wishlist */}
+            <Link href="/wishlist" className="relative group">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-neutral-100 flex items-center justify-center hover:bg-neutral-200 transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neutral-600 group-hover:text-black transition-colors">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full shadow-sm">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
             </Link>
 
-            {/* Wishlist Button */}
-            <Link href="/wishlist" className="relative w-10 h-10 flex items-center justify-center text-neutral-900 hover:bg-neutral-100 rounded-full transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border border-white">
-                  {wishlistCount}
-                </span>
-              )}
-            </Link>
-
-            {/* Cart Button */}
-            <Link href="/panier" className="relative w-10 h-10 flex items-center justify-center bg-black text-white rounded-full hover:bg-neutral-800 transition-colors shadow-lg shadow-neutral-900/20">
-               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                 <line x1="3" y1="6" x2="21" y2="6"></line>
-                 <path d="M16 10a4 4 0 0 1-8 0"></path>
-               </svg>
-               {itemCount > 0 && (
-                 <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border border-white">
-                   {itemCount}
-                 </span>
-               )}
+            {/* Cart */}
+            <Link href="/panier" className="relative group">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black flex items-center justify-center hover:bg-neutral-800 transition-colors shadow-lg shadow-black/10">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-white text-black text-[10px] font-bold flex items-center justify-center rounded-full border border-neutral-200 shadow-sm">
+                    {itemCount}
+                  </span>
+                )}
+              </div>
             </Link>
 
             {/* Mobile Menu Button */}

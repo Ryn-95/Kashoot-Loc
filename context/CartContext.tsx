@@ -27,6 +27,10 @@ type CartContextType = {
   itemCount: number;
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
+  applyPromoCode: (code: string) => boolean;
+  removePromoCode: () => void;
+  promoCode: string | null;
+  discountPercentage: number;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -34,6 +38,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [promoCode, setPromoCode] = useState<string | null>(null);
+  const [discountPercentage, setDiscountPercentage] = useState(0);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -102,6 +108,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
+  const applyPromoCode = (code: string) => {
+    if (code.toLowerCase() === 'kashoot10') {
+      setPromoCode('kashoot10');
+      setDiscountPercentage(0.20);
+      return true;
+    }
+    return false;
+  };
+
+  const removePromoCode = () => {
+    setPromoCode(null);
+    setDiscountPercentage(0);
+  };
+
   const cartTotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
   const itemCount = items.reduce((count, item) => count + item.quantity, 0);
 
@@ -116,6 +136,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         itemCount,
         isCartOpen,
         setIsCartOpen,
+        applyPromoCode,
+        removePromoCode,
+        promoCode,
+        discountPercentage,
       }}
     >
       {children}
