@@ -105,7 +105,7 @@ export default function Footer() {
             © {currentYear} Kashoot SAS. Tous droits réservés.
           </p>
           <a 
-            href="https://www.9secondes.com" 
+            href="https://www.9secondes.com/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="relative group px-5 py-2.5 overflow-hidden rounded-full bg-neutral-900 text-white transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
