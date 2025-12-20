@@ -109,9 +109,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const applyPromoCode = (code: string) => {
-    if (code.toLowerCase() === 'kashoot10') {
-      setPromoCode('kashoot10');
-      setDiscountPercentage(0.20);
+    // Check if code matches 'kashootloc' (case insensitive)
+    if (code.toLowerCase() === 'kashootloc') {
+      setPromoCode('kashootloc');
+      setDiscountPercentage(0.20); // 20% discount
       return true;
     }
     return false;

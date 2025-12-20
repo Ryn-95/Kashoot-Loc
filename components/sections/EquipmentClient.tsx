@@ -97,6 +97,27 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
   const day = String(now.getDate()).padStart(2, '0');
   const today = `${year}-${month}-${day}`;
 
+  // Helper to ensure date is valid (not in the past)
+  const handleDateChange = (setter: (val: string) => void, val: string, minDate: string) => {
+    if (!val) {
+      setter(val);
+      return;
+    }
+    const selectedDate = new Date(val);
+    const minAllowedDate = new Date(minDate);
+    
+    // Reset time parts for accurate date comparison
+    selectedDate.setHours(0, 0, 0, 0);
+    minAllowedDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate < minAllowedDate) {
+      // If selected date is before min date, force it to min date
+      setter(minDate);
+    } else {
+      setter(val);
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen pb-20 font-sans pt-[80px] md:pt-[88px]">
       {/* Main Content */}
@@ -195,7 +216,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                           type="date" 
                           min={today}
                           value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
+                          onChange={(e) => handleDateChange(setStartDate, e.target.value, today)}
                           className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
                         />
                       </div>
@@ -205,7 +226,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                           type="date" 
                           min={startDate || today}
                           value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
+                          onChange={(e) => handleDateChange(setEndDate, e.target.value, startDate || today)}
                           className="w-full p-3 rounded-xl border border-neutral-200 bg-neutral-50/50 text-sm font-medium focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-all hover:bg-white"
                         />
                       </div>
