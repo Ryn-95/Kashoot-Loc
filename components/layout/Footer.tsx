@@ -104,8 +104,18 @@ export default function Footer() {
           <p className="text-xs text-neutral-400">
             © {currentYear} Kashoot SAS. Tous droits réservés.
           </p>
-          <div className="flex gap-6 text-xs text-neutral-500">
-          </div>
+          <a 
+            href="https://9secondes.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="relative group px-5 py-2.5 overflow-hidden rounded-full bg-neutral-900 text-white transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-indigo-500/25"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative flex items-center gap-2">
+              <span className="text-[9px] font-medium uppercase tracking-widest opacity-70">Made by</span>
+              <span className="font-black italic tracking-tighter">9SECONDES</span>
+            </div>
+          </a>
         </div>
       </div>
     </footer>
