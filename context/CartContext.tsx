@@ -109,12 +109,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const applyPromoCode = (code: string) => {
-    // Check if code matches 'kashootloc' (case insensitive)
-    if (code.toLowerCase() === 'kashootloc') {
-      setPromoCode('kashootloc');
-      setDiscountPercentage(0.20); // 20% discount
-      return true;
-    }
+    // Promo codes are currently disabled
     return false;
   };
 
