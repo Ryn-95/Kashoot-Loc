@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Kashoot Premium",
   },
   description: "Location de caméras (Sony, RED, Arri), objectifs, drones et éclairage à Paris. Matériel audiovisuel professionnel disponible immédiatement. Devis WhatsApp.",
-  keywords: ["location matériel vidéo", "location caméra Paris", "location Sony A7S III", "location drone DJI", "location matériel cinéma", "louer objectif G Master", "location lumière tournage"],
+  keywords: ["location matériel vidéo", "location caméra Paris", "location Sony A7S III", "location drone DJI", "location matériel cinéma", "louer objectif G Master", "location lumière tournage", "kashoot location", "kashoot loc", "kashoot", "location caméra Goussainville", "location caméra Roissy"],
   authors: [{ name: "Kashoot Premium" }],
   creator: "Kashoot Premium",
   openGraph: {
@@ -53,6 +53,11 @@ export const metadata: Metadata = {
   verification: {
     google: '5ihsC1pCKuk5X7y3-zBpqPDBQUB4nnu0mwLzGA16PiM',
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -77,9 +82,12 @@ export default function RootLayout({
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 48.8566,
-      longitude: 2.3522
+      latitude: 48.9386,
+      longitude: 2.4906
     },
+    sameAs: [
+      "https://www.instagram.com/kashoot.premium/"
+    ],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: [
@@ -97,12 +105,27 @@ export default function RootLayout({
     priceRange: "$$"
   };
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [{
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Accueil',
+      item: 'https://www.kashootloc.fr'
+    }]
+  };
+
   return (
     <html lang="fr">
       <body className={`${inter.className} overflow-x-hidden`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
         <CartProvider>
           <WishlistProvider>

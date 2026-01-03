@@ -23,7 +23,7 @@ export async function generateMetadata(
 
   // SEO Optimization
   const title = `Location ${item.brand} ${item.model} - ${item.subtext} | Kashoot Premium`;
-  const description = `Louez votre ${item.brand} ${item.model} (${item.subtext}) à Paris et en France. Matériel professionnel disponible immédiatement. Devis rapide sur WhatsApp. ${item.specsBadge ? `Spécifications : ${item.specsBadge}.` : ''}`;
+  const description = `Louez votre ${item.brand} ${item.model} chez Kashoot Loc (Kashoot Premium). ${item.subtext} dispo à Paris, Aulnay, Goussainville. Matériel pro, tarif imbattable. Devis WhatsApp immédiat.`;
   
   const previousImages = (await parent).openGraph?.images || [];
 

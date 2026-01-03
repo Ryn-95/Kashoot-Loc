@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               {/* Social Icons */}
-              <a href="#" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:bg-neutral-900 hover:text-white transition-all duration-300">
+              <a href="https://www.instagram.com/kashoot.premium/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 hover:bg-neutral-900 hover:text-white transition-all duration-300">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
             </div>
@@ -74,19 +74,18 @@ export default function Footer() {
 
         {/* SEO Locations */}
         <div className="border-t border-neutral-100 py-8">
-          <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-4">Zones de livraison</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-4">Zones de livraison principales</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {[
-              { name: 'Paris', slug: 'paris' },
+              { name: 'Paris (75)', slug: 'paris' },
+              { name: 'Saint-Denis (93)', slug: 'saint-denis' },
+              { name: 'Aulnay-sous-Bois', slug: 'aulnay-sous-bois' },
+              { name: 'Roissy-en-France', slug: 'roissy' },
+              { name: 'Goussainville', slug: 'goussainville' },
               { name: 'Lyon', slug: 'lyon' },
               { name: 'Marseille', slug: 'marseille' },
               { name: 'Bordeaux', slug: 'bordeaux' },
-              { name: 'Lille', slug: 'lille' },
-              { name: 'Nice', slug: 'nice' },
-              { name: 'Toulouse', slug: 'toulouse' },
-              { name: 'Nantes', slug: 'nantes' },
-              { name: 'Strasbourg', slug: 'strasbourg' },
-              { name: 'Montpellier', slug: 'montpellier' }
+              { name: 'Lille', slug: 'lille' }
             ].map((city) => (
               <Link 
                 key={city.slug} 

@@ -34,6 +34,11 @@ export default function ContactContent() {
             <h2 className="text-xl font-light text-neutral-900 mb-6">Informations de contact</h2>
             <div className="space-y-4 text-neutral-600">
               <div>
+                <p className="font-medium text-neutral-900 mb-1">Adresse</p>
+                <p className="text-neutral-600">1 rue jean chaptal, 93600 Aulnay-sous-Bois</p>
+                <p className="text-xs text-neutral-400 mt-1">Retrait sur rendez-vous uniquement</p>
+              </div>
+              <div>
                 <p className="font-medium text-neutral-900 mb-1">Email</p>
                 <a
                   href="mailto:kashootcorp@gmail.com"

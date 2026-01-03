@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 import EquipmentGrid from '@/components/sections/EquipmentGrid';
 
@@ -169,12 +170,13 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
           {/* Left Column - Images Grid */}
           <div className="lg:col-span-8 order-1">
              <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-neutral-100 aspect-[4/3] group">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <Image 
                   src={item.image} 
                   alt={`Location ${item.brand} ${item.model} - Kashoot Premium`}
-                  className="w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105 object-cover"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
+                  fill
+                  className="transition-transform duration-1000 ease-out group-hover:scale-105 object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
              </div>
@@ -372,13 +374,13 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                </h3>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
-                    <span className="block text-xs font-bold text-red-900 mb-1">⏱ Retard de restitution</span>
+                    <span className="block text-xs font-bold text-red-900 mb-1">Retard de restitution</span>
                     <p className="text-xs text-red-700/80 leading-relaxed">
                       Tout retard non signalé est facturé <span className="font-bold text-red-800">50€</span>.
                     </p>
                   </div>
                  <div>
-                   <span className="block text-xs font-bold text-red-900 mb-1">⚠️ Dommages & Rayures</span>
+                   <span className="block text-xs font-bold text-red-900 mb-1">Dommages & Rayures</span>
                    <p className="text-xs text-red-700/80 leading-relaxed">
                      Facturation au prix du neuf ou de la réparation pour tout dommage constaté.
                    </p>
@@ -386,7 +388,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                  
                  {item.category === 'cameras' && (
                    <div className="md:col-span-2 pt-2 border-t border-red-200/50">
-                     <span className="block text-xs font-bold text-red-900 mb-1">📷 Déclenchements (Shutter Count)</span>
+                     <span className="block text-xs font-bold text-red-900 mb-1">Déclenchements (Shutter Count)</span>
                      <p className="text-xs text-red-700/80 leading-relaxed">
                        Maximum <span className="font-bold text-red-800">2500 déclenchements / jour</span> inclus. 
                        Au-delà, un supplément sera facturé.
@@ -395,7 +397,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                  )}
                  
                  <div className="md:col-span-2 pt-2 border-t border-red-200/50">
-                    <span className="block text-xs font-bold text-red-900 mb-1">📦 Services & Propreté</span>
+                    <span className="block text-xs font-bold text-red-900 mb-1">Services & Propreté</span>
                     <p className="text-xs text-red-700/80 leading-relaxed">
                       Livraison et Installation sur site disponible. 
                       <span className="block mt-1">Des frais de remise en état seront appliqués si le matériel est rendu sale.</span>
@@ -405,6 +407,34 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
                <p className="text-[10px] text-red-400 mt-4 font-medium text-center">
                  En réservant, vous acceptez ces conditions strictes.
                </p>
+             </div>
+             
+             {/* How it works */}
+             <div className="bg-neutral-50 rounded-2xl p-6 border border-neutral-100">
+               <h3 className="text-sm font-bold text-neutral-900 uppercase tracking-widest mb-4">Comment ça marche ?</h3>
+               <div className="space-y-4">
+                 <div className="flex gap-4">
+                   <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                   <div>
+                     <span className="block text-sm font-bold text-neutral-900">Ajoutez au panier</span>
+                     <p className="text-xs text-neutral-500 mt-0.5">Sélectionnez votre matériel et vos dates de location.</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                   <div>
+                     <span className="block text-sm font-bold text-neutral-900">Validez via WhatsApp</span>
+                     <p className="text-xs text-neutral-500 mt-0.5">Envoyez votre demande. Nous confirmons la dispo immédiatement.</p>
+                   </div>
+                 </div>
+                 <div className="flex gap-4">
+                   <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                   <div>
+                     <span className="block text-sm font-bold text-neutral-900">Récupération</span>
+                     <p className="text-xs text-neutral-500 mt-0.5">Retrait gratuit en boutique (Paris) ou livraison sur site.</p>
+                   </div>
+                 </div>
+               </div>
              </div>
           </div>
 

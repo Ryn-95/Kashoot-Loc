@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { equipmentItems } from '@/data/equipment';
 import { useWishlist } from '@/context/WishlistContext';
@@ -52,12 +53,13 @@ export default function EquipmentGrid({ items = equipmentItems }: EquipmentGridP
 
                 {/* Image */}
                 <div className={`absolute inset-0 ${item.imageFit === 'contain' ? ((item as any).imagePadding || 'p-2') + ' bg-white' : ''}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img 
+                    <Image
                       src={item.image} 
-                      alt={`${item.brand} ${item.model}`}
-                      className={`w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 ${item.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
-                      onError={(e) => { (e.currentTarget as HTMLImageElement).src = fallbackImage; }}
+                      alt={`${item.brand} ${item.model} - Location Paris`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className={`transition-transform duration-700 ease-out group-hover:scale-105 ${item.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`}
+                      onError={(e: any) => { e.currentTarget.src = fallbackImage; }}
                     />
                 </div>
                 

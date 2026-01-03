@@ -9,32 +9,32 @@ type Props = {
 
 const categoryMetadata: Record<string, { title: string; description: string }> = {
   cameras: {
-    title: 'Location Caméras Sony, GoPro & Cinéma | Kashoot Premium',
-    description: 'Louez les meilleures caméras (Sony A7S III, FX3, GoPro) à Paris. Matériel cinéma et vidéo disponible immédiatement pour vos tournages.'
+    title: 'Location Caméra Sony Paris (FX3, A7S III) - Kashoot Loc',
+    description: 'Louez les meilleures caméras (Sony A7S III, FX3, GoPro) chez Kashoot Loc à Paris. Matériel cinéma et vidéo disponible immédiatement pour vos tournages.'
   },
   objectifs: {
-    title: 'Location Objectifs Sony G Master & Zoom | Kashoot Premium',
-    description: 'Large gamme d\'objectifs Sony G Master à louer : 24-70mm, 70-200mm, 50mm f/1.2. La qualité optique pro pour vos productions.'
+    title: 'Location Objectif Sony G Master Paris - Kashoot Loc',
+    description: 'Large gamme d\'objectifs Sony G Master à louer chez Kashoot Loc : 24-70mm, 70-200mm, 50mm f/1.2. La qualité optique pro pour vos productions.'
   },
   drones: {
-    title: 'Location Drone DJI Mini 4 Pro & Accessoires | Kashoot Premium',
-    description: 'Location de drones DJI et stabilisateurs. Prises de vues aériennes professionnelles. Matériel récent et entretenu.'
+    title: 'Location Drone DJI Paris (Mini 4 Pro) - Kashoot Loc',
+    description: 'Location de drones DJI et stabilisateurs chez Kashoot Loc. Prises de vues aériennes professionnelles. Matériel récent et entretenu.'
   },
   lumieres: {
-    title: 'Location Éclairage Vidéo & Cinéma (Aputure, Nanlite) | Kashoot Premium',
-    description: 'Panneaux LED, Softbox, éclairage studio à louer. Tout le matériel lumière pour sublimer vos vidéos.'
+    title: 'Location Éclairage Vidéo Paris (Aputure, Nanlite) - Kashoot Loc',
+    description: 'Panneaux LED, Softbox, éclairage studio à louer chez Kashoot Loc. Tout le matériel lumière pour sublimer vos vidéos.'
   },
   audio: {
-    title: 'Location Micro HF, Enregistreurs & Son | Kashoot Premium',
-    description: 'Location micros Rode Wireless, Sennheiser, enregistreurs Zoom. Son de qualité broadcast pour vos interviews et reportages.'
+    title: 'Location Micro HF & Enregistreur Paris - Kashoot Loc',
+    description: 'Location micros Rode Wireless, Sennheiser, enregistreurs Zoom chez Kashoot Loc. Son de qualité broadcast pour vos interviews et reportages.'
   },
   accessoires: {
-    title: 'Location Accessoires Vidéo, Trépieds & Grips | Kashoot Premium',
-    description: 'Trépieds, monopodes, cages, batteries, cartes SD. Tous les accessoires indispensables pour un tournage réussi.'
+    title: 'Location Trépied & Accessoire Tournage Paris - Kashoot Loc',
+    description: 'Trépieds, monopodes, cages, batteries, cartes SD chez Kashoot Loc. Tous les accessoires indispensables pour un tournage réussi.'
   },
   moniteurs: {
-    title: 'Location Moniteurs & Enregistreurs Atomos | Kashoot Premium',
-    description: 'Moniteurs retour, enregistreurs Atomos Ninja V. Contrôlez votre image avec précision.'
+    title: 'Location Moniteur & Atomos Paris - Kashoot Loc',
+    description: 'Moniteurs retour, enregistreurs Atomos Ninja V chez Kashoot Loc. Contrôlez votre image avec précision.'
   }
 };
 

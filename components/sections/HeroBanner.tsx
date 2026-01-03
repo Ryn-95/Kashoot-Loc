@@ -35,19 +35,20 @@ export default function HeroBanner() {
             </div>
             
             <h1 className="text-lg sm:text-xl md:text-3xl font-brand text-white leading-[1.1] max-w-[60%] sm:max-w-[80%] md:max-w-[450px]">
-              Plus qu'une location, une <br/>
+              <span className="block text-sm md:text-base font-medium text-blue-200 mb-1">Kashoot Loc • Location Caméra Paris</span>
+              Location de matériel <br/>
               <span className="relative inline-block">
                 <span className="relative z-10 font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  nouvelle façon
+                  vidéo & cinéma
                 </span>
                 <svg className="absolute -bottom-1.5 left-0 w-full h-2 md:h-2.5 text-[#4da6ff]" viewBox="0 0 100 10" preserveAspectRatio="none">
                   <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
                 </svg>
-              </span> <span className="font-bold">de créer.</span>
+              </span> <span className="font-bold">professionnel.</span>
             </h1>
             <p className="mt-3 text-[11px] sm:text-xs md:text-sm text-blue-100 max-w-[60%] sm:max-w-[80%] md:max-w-[350px] font-light tracking-wide leading-relaxed">
-              Accédez au meilleur matériel vidéo sans contraintes. 
-              <span className="block mt-1.5 text-blue-200/80">• Livraison 24h • Assurance incluse • Support 24/7</span>
+              Le n°1 de la <strong>location de matériel vidéo</strong> en Île-de-France.
+              <span className="block mt-1.5 text-blue-200/80">• Caméras Sony & Canon • Livraison 24h • Support 7j/7</span>
             </p>
             
             <div className="mt-5 flex flex-wrap gap-2 md:gap-3">

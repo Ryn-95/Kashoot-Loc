@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import HeroBanner from '@/components/sections/HeroBanner';
 import Catalog from '@/components/sections/Catalog';
+import SeoContent from '@/components/sections/SeoContent';
 import Preloader from '@/components/ui/Preloader';
 import CategoryNav from '@/components/layout/CategoryNav';
 
@@ -50,6 +51,7 @@ export default function HomeClient({ initialCategoryProp }: { initialCategoryPro
       />
       <HeroBanner />
       <Catalog activeCategory={activeCategory} searchQuery={searchQuery} />
+      <SeoContent />
     </main>
   );
 }

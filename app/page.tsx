@@ -32,8 +32,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   }
 
   return {
-    title: 'Kashoot Premium - Location Matériel Vidéo & Cinéma Paris',
-    description: 'Service de location de matériel audiovisuel premium à Paris. Caméras, objectifs, drones, lumières. Réservation simple via WhatsApp.',
+    title: 'Location Matériel Vidéo Paris (Caméra, Objectif, Lumière) - Kashoot Loc',
+    description: 'Le n°1 de la location matériel vidéo à Paris & Île-de-France. Louez Sony FX3, FX6, Canon, Drones, Lumières au meilleur prix. Dispo 24/7.',
     alternates: {
       canonical: 'https://www.kashootloc.fr'
     }
@@ -52,6 +52,35 @@ export default function Home({ searchParams }: Props) {
       '@type': 'SearchAction',
       target: 'https://www.kashootloc.fr/?search={search_term_string}',
       'query-input': 'required name=search_term_string'
+    },
+    mainEntity: {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Comment louer du matériel vidéo chez Kashoot Loc ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Choisissez votre caméra, objectif ou accessoire sur notre catalogue en ligne. Contactez-nous via WhatsApp pour valider la disponibilité. Le retrait se fait à Aulnay-sous-Bois ou par livraison en Île-de-France.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Quels documents sont nécessaires pour louer ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Pour toute location, nous demandons une pièce d\'identité valide et une caution (empreinte bancaire ou chèque) correspondant à la valeur du matériel loué.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Proposez-vous la livraison du matériel ?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Oui, nous livrons votre matériel vidéo sur Paris et toute l\'Île-de-France (Saint-Denis, Roissy, etc.). Contactez-nous pour un devis de livraison.'
+          }
+        }
+      ]
     }
   };
 

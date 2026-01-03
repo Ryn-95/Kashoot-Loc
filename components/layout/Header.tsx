@@ -120,6 +120,13 @@ export default function Header() {
                 </button>
               ))}
             </div>
+            
+            <Link 
+              href="/faq"
+              className="ml-2 px-4 py-1.5 rounded-full text-xs font-bold text-neutral-500 hover:text-black hover:bg-neutral-100 transition-all"
+            >
+              FAQ
+            </Link>
           </div>
 
           {/* Right Actions */}
@@ -320,13 +327,14 @@ export default function Header() {
                   </Link>
                 ))}
                 <Link href="/contact" className="text-xl sm:text-2xl font-bold text-neutral-900">Contact</Link>
+                <Link href="/faq" className="text-xl sm:text-2xl font-bold text-neutral-900">FAQ</Link>
               </nav>
             </div>
           </div>
 
           <div className="pt-8 border-t border-neutral-100">
              <p className="text-sm text-neutral-400 text-center">
-               © 2024 Kashoot Location. All rights reserved.
+               © {new Date().getFullYear()} Kashoot Location. All rights reserved.
              </p>
           </div>
         </div>
