@@ -23,7 +23,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     
     const title = titles[category] || 'Location Matériel Vidéo Paris';
     return {
-      title: `${title} | Kashoot Premium`,
+      title: `${title} | Kashoot Loc`,
       description: `Découvrez notre gamme de ${category} en location à Paris. Matériel professionnel disponible immédiatement.`,
       alternates: {
         canonical: `https://www.kashootloc.fr/?category=${category}`
@@ -46,7 +46,7 @@ export default function Home({ searchParams }: Props) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Kashoot Premium',
+    name: 'Kashoot Loc',
     url: 'https://www.kashootloc.fr',
     potentialAction: {
       '@type': 'SearchAction',

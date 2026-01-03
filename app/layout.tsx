@@ -19,24 +19,24 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.kashootloc.fr'),
   title: {
-    default: "Kashoot Premium - Location Matériel Vidéo, Cinéma & Broadcast Paris",
-    template: "%s | Kashoot Premium",
+    default: "Kashoot Loc - Location Matériel Vidéo, Cinéma & Broadcast Paris",
+    template: "%s | Kashoot Loc",
   },
-  description: "Location de caméras (Sony, RED, Arri), objectifs, drones et éclairage à Paris. Matériel audiovisuel professionnel disponible immédiatement. Devis WhatsApp.",
+  description: "Kashoot Loc : Location de caméras (Sony, RED, Arri), objectifs, drones et éclairage à Paris. Matériel audiovisuel professionnel disponible immédiatement. Devis WhatsApp.",
   keywords: ["location matériel vidéo", "location caméra Paris", "location Sony A7S III", "location drone DJI", "location matériel cinéma", "louer objectif G Master", "location lumière tournage", "kashoot location", "kashoot loc", "kashoot", "location caméra Goussainville", "location caméra Roissy"],
-  authors: [{ name: "Kashoot Premium" }],
-  creator: "Kashoot Premium",
+  authors: [{ name: "Kashoot Loc" }],
+  creator: "Kashoot Loc",
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: "https://www.kashootloc.fr",
-    title: "Kashoot Premium - Location Matériel Vidéo & Cinéma",
+    title: "Kashoot Loc - Location Matériel Vidéo & Cinéma",
     description: "Le service de location audiovisuelle nouvelle génération. Matériel pro, dispo immédiate, zéro paperasse.",
-    siteName: "Kashoot Premium",
+    siteName: "Kashoot Loc",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kashoot Premium - Location Matériel Vidéo",
+    title: "Kashoot Loc - Location Matériel Vidéo",
     description: "Location matériel audiovisuel professionnel à Paris.",
   },
   robots: {
@@ -68,7 +68,8 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'Kashoot Premium',
+    name: 'Kashoot Loc',
+    alternateName: 'Kashoot Premium',
     image: 'https://www.kashootloc.fr/images/logo.png',
     '@id': 'https://www.kashootloc.fr',
     url: 'https://www.kashootloc.fr',
