@@ -184,7 +184,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-white"
+            className="fixed inset-0 z-[100] bg-white"
           >
             <div className="max-w-3xl mx-auto px-6 pt-32 relative h-full">
               <motion.div
@@ -200,7 +200,7 @@ export default function Header() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Rechercher..."
-                    className="w-full text-4xl md:text-6xl font-bold bg-transparent border-none outline-none placeholder:text-neutral-300 text-neutral-900 tracking-tight"
+                    className="w-full text-4xl md:text-6xl font-bold bg-transparent border-none outline-none placeholder:text-neutral-400 text-neutral-900 tracking-tight"
                   />
                 </form>
                 
