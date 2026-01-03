@@ -47,7 +47,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider text-neutral-900 mb-6">Aide & Info</h4>
             <ul className="space-y-4">
-              <li><Link href="/insurance" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Assurance & Caution</Link></li>
+              <li><Link href="/services" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Services & Livraison</Link></li>
               <li><Link href="/faq" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">FAQ</Link></li>
               <li><Link href="/contact" className="text-neutral-500 hover:text-blue-600 transition-colors text-sm">Nous contacter</Link></li>
             </ul>
