@@ -87,7 +87,8 @@ export default function RootLayout({
       longitude: 2.4906
     },
     sameAs: [
-      "https://www.instagram.com/kashoot.premium/"
+      "https://www.instagram.com/kashoot_loc/",
+      "https://www.tiktok.com/@kashoot_loc"
     ],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
