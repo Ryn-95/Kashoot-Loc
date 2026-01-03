@@ -20,7 +20,7 @@ const categories = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
   const pathname = usePathname();
@@ -46,9 +46,8 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
+  // Close search when route changes
   useEffect(() => {
-    setIsMobileMenuOpen(false);
     setIsSearchOpen(false);
   }, [pathname]);
 
@@ -81,7 +80,7 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled || isMobileMenuOpen ? 'bg-white/80 backdrop-blur-xl shadow-sm' : 'bg-transparent'
+      scrolled ? 'bg-white/80 backdrop-blur-xl shadow-sm' : 'bg-transparent'
     }`}>
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10 relative">
         <div className="flex items-center justify-between h-[60px] md:h-[68px]">
@@ -172,25 +171,7 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Mobile Menu Button */}
-            <button 
-              aria-label="Menu"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center bg-neutral-100 text-neutral-900 rounded-full hover:bg-neutral-200 transition-colors"
-            >
-              {isMobileMenuOpen ? (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              )}
-            </button>
+
           </div>
         </div>
       </div>
@@ -306,39 +287,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-20 bg-white transition-all duration-300 md:hidden ${
-        isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-      }`}>
-        <div className="flex flex-col h-full pt-20 sm:pt-24 px-6 pb-8">
-          <div className="flex-1 space-y-6 sm:space-y-8 overflow-y-auto">
-            <div>
-              <h3 className="text-xs sm:text-sm font-bold text-neutral-400 uppercase tracking-widest mb-4">Menu</h3>
-              <nav className="flex flex-col gap-3 sm:gap-4">
-                <Link href="/" className="text-xl sm:text-2xl font-bold text-neutral-900">Accueil</Link>
-                {categories.filter(c => c.id !== 'tout').map(cat => (
-                  <Link 
-                    key={cat.id} 
-                    href={`/?category=${cat.id}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-xl sm:text-2xl font-bold text-neutral-900"
-                  >
-                    {cat.label}
-                  </Link>
-                ))}
-                <Link href="/contact" className="text-xl sm:text-2xl font-bold text-neutral-900">Contact</Link>
-                <Link href="/faq" className="text-xl sm:text-2xl font-bold text-neutral-900">FAQ</Link>
-              </nav>
-            </div>
-          </div>
 
-          <div className="pt-8 border-t border-neutral-100">
-             <p className="text-sm text-neutral-400 text-center">
-               © {new Date().getFullYear()} Kashoot Location. All rights reserved.
-             </p>
-          </div>
-        </div>
-      </div>
     </header>
   );
 }
