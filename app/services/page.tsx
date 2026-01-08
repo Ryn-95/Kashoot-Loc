@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Kashoot Loc : Livraison express 2h, techniciens vidéo certifiés, assurance multirisque incluse et post-production. La location de caméra simplifiée pour les pros.',
   keywords: 'livraison caméra paris, technicien vidéo tournage, assurance location audiovisuel, montage vidéo paris, location matériel cinéma, kashoot services, assistant caméra, chef opérateur',
   openGraph: {
-    title: 'Services Premium - Location Matériel Vidéo Paris | Kashoot Loc',
+    title: 'Services - Location Matériel Vidéo Paris | Kashoot Loc',
     description: 'Livraison Express 24/7, Techniciens Qualifiés, Assurance Incluse. Louez votre matériel vidéo en toute sérénité avec Kashoot Loc.',
     url: 'https://www.kashootloc.fr/services',
     type: 'website',

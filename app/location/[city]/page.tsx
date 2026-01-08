@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = cities.find(c => c.slug === params.city);
   if (!city) return {};
 
-  const title = `Location Matériel Vidéo ${city.name} - Caméras, Drones, Lumières | Kashoot Premium`;
+  const title = `Location Matériel Vidéo ${city.name} - Caméras, Drones, Lumières | Kashoot Loc`;
   const description = `Louez votre matériel audiovisuel à ${city.name} et en région. Caméras Sony, Drones DJI, Lumières Cinéma. Devis immédiat sur WhatsApp. Livraison possible.`;
 
   return {
@@ -56,7 +56,7 @@ export default function LocationPage({ params }: Props) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `Kashoot Premium ${city.name}`,
+    name: `Kashoot Loc ${city.name}`,
     description: `Service de location de matériel vidéo et cinéma professionnel à ${city.name}.`,
     url: `https://www.kashootloc.fr/location/${city.slug}`,
     telephone: '+33779570959',
@@ -92,7 +92,7 @@ export default function LocationPage({ params }: Props) {
           </h1>
           <p className="text-lg md:text-xl text-neutral-500 max-w-2xl leading-relaxed">
             Besoin d'une caméra Sony, d'un drone DJI ou d'éclairage cinéma pour votre tournage à {city.name} ? 
-            Kashoot Premium vous accompagne avec du matériel professionnel disponible immédiatement.
+            Kashoot Loc vous accompagne avec du matériel professionnel disponible immédiatement.
           </p>
           <div className="mt-8 flex gap-4">
              <a href="#catalogue" className="bg-black text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-all">
@@ -108,7 +108,7 @@ export default function LocationPage({ params }: Props) {
       {/* SEO Text Content */}
       <section className="py-16 px-6 bg-neutral-50">
         <div className="max-w-3xl mx-auto text-center">
-           <h2 className="text-2xl font-bold mb-6">Pourquoi louer chez Kashoot Premium à {city.name} ?</h2>
+           <h2 className="text-2xl font-bold mb-6">Pourquoi louer chez Kashoot Loc à {city.name} ?</h2>
            <div className="grid md:grid-cols-3 gap-8 text-left">
               <div>
                 <h3 className="font-bold mb-2">Matériel Pro</h3>

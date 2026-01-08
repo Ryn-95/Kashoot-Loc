@@ -7,13 +7,13 @@ export default function SeoContent() {
       <div className="max-w-4xl mx-auto">
         <div className="prose prose-neutral max-w-none">
           <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-6">
-            Kashoot Premium : Votre expert en location audiovisuelle à Paris
+            Kashoot Loc : Votre expert en location audiovisuelle à Paris
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-10">
             <div>
               <p className="text-neutral-600 mb-4 leading-relaxed">
-                Bienvenue chez <strong>Kashoot Premium</strong> (souvent recherché comme <strong>Kashoot Loc</strong> ou Kashoot Location), la référence pour la 
+                Bienvenue chez <strong>Kashoot Loc</strong>, la référence pour la 
                 <strong> location de matériel vidéo professionnel à Paris</strong> et en Île-de-France (Goussainville, Roissy, Aulnay-sous-Bois).
               </p>
               <p className="text-neutral-600 leading-relaxed">

@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'FAQ - Questions Fréquentes | Kashoot Premium',
-  description: 'Tout savoir sur la location de matériel vidéo chez Kashoot Premium. Réservation, caution, assurance, livraison. Réponses à vos questions.',
+  title: 'FAQ - Questions Fréquentes | Kashoot Loc',
+  description: 'Tout savoir sur la location de matériel vidéo chez Kashoot Loc. Réservation, caution, assurance, livraison. Réponses à vos questions.',
   openGraph: {
-    title: 'FAQ - Questions Fréquentes | Kashoot Premium',
-    description: 'Tout savoir sur la location de matériel vidéo chez Kashoot Premium.',
+    title: 'FAQ - Questions Fréquentes | Kashoot Loc',
+    description: 'Tout savoir sur la location de matériel vidéo chez Kashoot Loc.',
   },
   alternates: {
     canonical: 'https://www.kashootloc.fr/faq'

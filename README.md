@@ -1,6 +1,6 @@
 # Kashoot Premium - Site de vidéaste mariage
 
-Site web premium et minimaliste pour Kashoot, vidéaste spécialisé dans les mariages.
+Site web pour Kashoot Loc, spécialiste de la location de matériel vidéo.
 
 ## 🚀 Technologies
 
@@ -34,7 +34,7 @@ npm start
 ## 📁 Structure du projet
 
 ```
-kashoot-premium/
+kashoot-loc/
 ├── app/                    # Pages Next.js
 │   ├── layout.tsx         # Layout principal
 │   ├── page.tsx           # Page d'accueil

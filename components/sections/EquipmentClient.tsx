@@ -172,7 +172,7 @@ export default function EquipmentClient({ item, relatedItems }: { item: Equipmen
              <div className="relative rounded-[24px] md:rounded-[32px] overflow-hidden bg-neutral-100 aspect-[4/3] group">
                 <Image 
                   src={item.image} 
-                  alt={`Location ${item.brand} ${item.model} - Kashoot Premium`}
+                  alt={`Location ${item.brand} ${item.model} - Kashoot Loc`}
                   fill
                   className="transition-transform duration-1000 ease-out group-hover:scale-105 object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"

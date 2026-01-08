@@ -41,7 +41,7 @@ const categoryMetadata: Record<string, { title: string; description: string }> =
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const meta = categoryMetadata[params.category];
   if (!meta) return {
-    title: 'Catégorie non trouvée | Kashoot Premium'
+    title: 'Catégorie non trouvée | Kashoot Loc'
   };
   
   return {

@@ -64,7 +64,6 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Kashoot Loc',
-    alternateName: 'Kashoot Premium',
     image: 'https://www.kashootloc.fr/images/logo.png',
     '@id': 'https://www.kashootloc.fr',
     url: 'https://www.kashootloc.fr',

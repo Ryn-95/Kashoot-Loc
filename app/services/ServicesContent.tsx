@@ -32,7 +32,7 @@ export default function ServicesContent() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600 mb-6 bg-white px-4 py-1.5 rounded-full border border-blue-100 shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
-            Kashoot Premium Services
+            Kashoot Loc Services
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-brand text-neutral-900 mb-8 leading-[0.95] tracking-tight">
             L'EXPÉRIENCE <br/>

@@ -17,13 +17,13 @@ export async function generateMetadata(
 
   if (!item) {
     return {
-      title: 'Produit non trouvé | Kashoot Premium',
+      title: 'Produit non trouvé | Kashoot Loc',
     };
   }
 
   // SEO Optimization
-  const title = `Location ${item.brand} ${item.model} - ${item.subtext} | Kashoot Premium`;
-  const description = `Louez votre ${item.brand} ${item.model} chez Kashoot Loc (Kashoot Premium). ${item.subtext} dispo à Paris, Aulnay, Goussainville. Matériel pro, tarif imbattable. Devis WhatsApp immédiat.`;
+  const title = `Location ${item.brand} ${item.model} - ${item.subtext} | Kashoot Loc`;
+  const description = `Louez votre ${item.brand} ${item.model} chez Kashoot Loc. ${item.subtext} dispo à Paris, Aulnay, Goussainville. Matériel pro, tarif imbattable. Devis WhatsApp immédiat.`;
   
   const previousImages = (await parent).openGraph?.images || [];
 
