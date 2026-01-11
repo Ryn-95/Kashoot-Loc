@@ -62,12 +62,21 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'CameraStore',
     name: 'Kashoot Loc',
     image: 'https://www.kashootloc.fr/images/logo.png',
     '@id': 'https://www.kashootloc.fr',
     url: 'https://www.kashootloc.fr',
     telephone: '+33779570959',
+    priceRange: '€€',
+    knowsAbout: [
+      "Location Caméra",
+      "Matériel Vidéo",
+      "Cinéma",
+      "Production Audiovisuelle",
+      "Sony FX3",
+      "Sony A7S III"
+    ],
     address: {
       '@type': 'PostalAddress',
       streetAddress: '1 rue jean chaptal',
@@ -97,8 +106,7 @@ export default function RootLayout({
       ],
       opens: "08:00",
       closes: "20:00"
-    },
-    priceRange: "$$"
+    }
   };
 
   const breadcrumbLd = {

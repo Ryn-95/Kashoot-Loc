@@ -37,6 +37,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    keywords: [
+      `location caméra ${city.name}`,
+      `location matériel vidéo ${city.name}`,
+      `louer drone ${city.name}`,
+      `matériel cinéma ${city.name}`,
+      "Sony FX3",
+      "Sony A7S III",
+      "Kashoot Loc"
+    ],
     openGraph: {
       title,
       description,
@@ -55,15 +64,21 @@ export default function LocationPage({ params }: Props) {
   // LocalBusiness Schema for this specific location/service area
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'CameraStore',
     name: `Kashoot Loc ${city.name}`,
-    description: `Service de location de matériel vidéo et cinéma professionnel à ${city.name}.`,
+    description: `Service de location de matériel vidéo et cinéma professionnel à ${city.name}. Caméras, Drones, Lumières.`,
     url: `https://www.kashootloc.fr/location/${city.slug}`,
     telephone: '+33779570959',
     areaServed: {
       '@type': 'City',
       name: city.name
     },
+    knowsAbout: [
+      "Location Caméra",
+      "Matériel Vidéo",
+      "Cinéma",
+      "Production Audiovisuelle"
+    ],
     address: {
       '@type': 'PostalAddress',
       addressLocality: city.name,
