@@ -6,14 +6,73 @@ import { equipmentItems } from '@/data/equipment';
 // Define the cities we want to target for SEO
 const cities = [
   // Île-de-France (Priorité absolue)
+  // 75 - Paris
   { slug: 'paris', name: 'Paris', zip: '75000' },
+  
+  // 93 - Seine-Saint-Denis (Zone prioritaire - Base)
   { slug: 'saint-denis', name: 'Saint-Denis', zip: '93200' },
   { slug: 'aulnay-sous-bois', name: 'Aulnay-sous-Bois', zip: '93600' },
+  { slug: 'montreuil', name: 'Montreuil', zip: '93100' },
+  { slug: 'aubervilliers', name: 'Aubervilliers', zip: '93300' },
+  { slug: 'drancy', name: 'Drancy', zip: '93700' },
+  { slug: 'pantin', name: 'Pantin', zip: '93500' },
+  { slug: 'saint-ouen', name: 'Saint-Ouen', zip: '93400' },
+  { slug: 'noisy-le-grand', name: 'Noisy-le-Grand', zip: '93160' },
+  { slug: 'bagnolet', name: 'Bagnolet', zip: '93170' },
+  { slug: 'bondy', name: 'Bondy', zip: '93140' },
+  { slug: 'epinay-sur-seine', name: 'Épinay-sur-Seine', zip: '93800' },
+  { slug: 'sevran', name: 'Sevran', zip: '93270' },
+  { slug: 'le-blanc-mesnil', name: 'Le Blanc-Mesnil', zip: '93150' },
+  { slug: 'bobigny', name: 'Bobigny', zip: '93000' },
+
+  // 92 - Hauts-de-Seine (Business & Prod)
+  { slug: 'boulogne-billancourt', name: 'Boulogne-Billancourt', zip: '92100' },
+  { slug: 'nanterre', name: 'Nanterre', zip: '92000' },
+  { slug: 'courbevoie', name: 'Courbevoie', zip: '92400' },
+  { slug: 'colombes', name: 'Colombes', zip: '92700' },
+  { slug: 'asnieres-sur-seine', name: 'Asnières-sur-Seine', zip: '92600' },
+  { slug: 'rueil-malmaison', name: 'Rueil-Malmaison', zip: '92500' },
+  { slug: 'levallois-perret', name: 'Levallois-Perret', zip: '92300' },
+  { slug: 'issy-les-moulineaux', name: 'Issy-les-Moulineaux', zip: '92130' },
+  { slug: 'neuilly-sur-seine', name: 'Neuilly-sur-Seine', zip: '92200' },
+  { slug: 'clichy', name: 'Clichy', zip: '92110' },
+  { slug: 'antony', name: 'Antony', zip: '92160' },
+
+  // 94 - Val-de-Marne
+  { slug: 'creteil', name: 'Créteil', zip: '94000' },
+  { slug: 'vitry-sur-seine', name: 'Vitry-sur-Seine', zip: '94400' },
+  { slug: 'champigny-sur-marne', name: 'Champigny-sur-Marne', zip: '94500' },
+  { slug: 'saint-maur-des-fosses', name: 'Saint-Maur-des-Fossés', zip: '94100' },
+  { slug: 'ivry-sur-seine', name: 'Ivry-sur-Seine', zip: '94200' },
+  { slug: 'villejuif', name: 'Villejuif', zip: '94800' },
+  { slug: 'maisons-alfort', name: 'Maisons-Alfort', zip: '94700' },
+  { slug: 'fontenay-sous-bois', name: 'Fontenay-sous-Bois', zip: '94120' },
+  { slug: 'vincennes', name: 'Vincennes', zip: '94300' },
+
+  // 95 - Val-d'Oise (Proche Roissy)
   { slug: 'roissy-en-france', name: 'Roissy-en-France', zip: '95700' },
   { slug: 'goussainville', name: 'Goussainville', zip: '95190' },
-  { slug: 'montreuil', name: 'Montreuil', zip: '93100' },
-  { slug: 'boulogne-billancourt', name: 'Boulogne-Billancourt', zip: '92100' },
-  
+  { slug: 'argenteuil', name: 'Argenteuil', zip: '95100' },
+  { slug: 'cergy', name: 'Cergy', zip: '95000' },
+  { slug: 'sarcelles', name: 'Sarcelles', zip: '95200' },
+  { slug: 'garges-les-gonesse', name: 'Garges-lès-Gonesse', zip: '95140' },
+  { slug: 'franconville', name: 'Franconville', zip: '95130' },
+  { slug: 'pontoise', name: 'Pontoise', zip: '95000' },
+
+  // 78 - Yvelines
+  { slug: 'versailles', name: 'Versailles', zip: '78000' },
+  { slug: 'sartrouville', name: 'Sartrouville', zip: '78500' },
+  { slug: 'saint-germain-en-laye', name: 'Saint-Germain-en-Laye', zip: '78100' },
+
+  // 91 - Essonne
+  { slug: 'evry-courcouronnes', name: 'Évry-Courcouronnes', zip: '91000' },
+  { slug: 'massy', name: 'Massy', zip: '91300' },
+
+  // 77 - Seine-et-Marne
+  { slug: 'chelles', name: 'Chelles', zip: '77500' },
+  { slug: 'meaux', name: 'Meaux', zip: '77100' },
+  { slug: 'marne-la-vallee', name: 'Marne-la-Vallée', zip: '77420' },
+
   // Grandes villes (Secondaire)
   { slug: 'lyon', name: 'Lyon', zip: '69000' },
   { slug: 'marseille', name: 'Marseille', zip: '13000' },

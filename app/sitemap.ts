@@ -19,7 +19,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const citiesIDF = ['paris', 'saint-denis', 'aulnay-sous-bois', 'roissy-en-france', 'goussainville', 'montreuil', 'boulogne-billancourt'];
+  const citiesIDF = [
+    'paris', 'saint-denis', 'aulnay-sous-bois', 'montreuil', 'aubervilliers', 'drancy', 'pantin', 'saint-ouen', 'noisy-le-grand', 'bagnolet', 'bondy', 'epinay-sur-seine', 'sevran', 'le-blanc-mesnil', 'bobigny', // 93
+    'boulogne-billancourt', 'nanterre', 'courbevoie', 'colombes', 'asnieres-sur-seine', 'rueil-malmaison', 'levallois-perret', 'issy-les-moulineaux', 'neuilly-sur-seine', 'clichy', 'antony', // 92
+    'creteil', 'vitry-sur-seine', 'champigny-sur-marne', 'saint-maur-des-fosses', 'ivry-sur-seine', 'villejuif', 'maisons-alfort', 'fontenay-sous-bois', 'vincennes', // 94
+    'roissy-en-france', 'goussainville', 'argenteuil', 'cergy', 'sarcelles', 'garges-les-gonesse', 'franconville', 'pontoise', // 95
+    'versailles', 'sartrouville', 'saint-germain-en-laye', // 78
+    'evry-courcouronnes', 'massy', // 91
+    'chelles', 'meaux', 'marne-la-vallee' // 77
+  ];
   const citiesFrance = ['lyon', 'marseille', 'bordeaux', 'lille', 'nice', 'toulouse', 'nantes', 'strasbourg', 'montpellier'];
   
   const locationUrlsIDF = citiesIDF.map((city) => ({

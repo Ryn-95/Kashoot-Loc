@@ -80,15 +80,36 @@ export default function Footer() {
         {/* SEO Locations */}
         <div className="border-t border-neutral-100 py-8">
           <p className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-4">Zones de livraison principales</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-neutral-500">
             {[
+              // Top Priorité (Paris & 93/95 Nord)
               { name: 'Paris (75)', slug: 'paris' },
               { name: 'Saint-Denis (93)', slug: 'saint-denis' },
               { name: 'Aulnay-sous-Bois', slug: 'aulnay-sous-bois' },
-              { name: 'Roissy-en-France', slug: 'roissy-en-france' },
-              { name: 'Goussainville', slug: 'goussainville' },
-              { name: 'Montreuil', slug: 'montreuil' },
+              { name: 'Roissy CDG', slug: 'roissy-en-france' },
+              
+              // Hauts-de-Seine (92)
               { name: 'Boulogne-Billancourt', slug: 'boulogne-billancourt' },
+              { name: 'Neuilly-sur-Seine', slug: 'neuilly-sur-seine' },
+              { name: 'La Défense', slug: 'courbevoie' },
+              { name: 'Issy-les-Moulineaux', slug: 'issy-les-moulineaux' },
+              
+              // Seine-Saint-Denis (93)
+              { name: 'Montreuil', slug: 'montreuil' },
+              { name: 'Pantin', slug: 'pantin' },
+              { name: 'Saint-Ouen', slug: 'saint-ouen' },
+              
+              // Val-de-Marne (94)
+              { name: 'Créteil', slug: 'creteil' },
+              { name: 'Vincennes', slug: 'vincennes' },
+              { name: 'Ivry-sur-Seine', slug: 'ivry-sur-seine' },
+              
+              // Val-d'Oise (95) & Yvelines (78)
+              { name: 'Cergy', slug: 'cergy' },
+              { name: 'Argenteuil', slug: 'argenteuil' },
+              { name: 'Versailles', slug: 'versailles' },
+              
+              // Autres Grandes Villes
               { name: 'Lyon', slug: 'lyon' },
               { name: 'Marseille', slug: 'marseille' },
               { name: 'Bordeaux', slug: 'bordeaux' }
