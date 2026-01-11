@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import EquipmentGrid from '@/components/sections/EquipmentGrid';
 import { equipmentItems } from '@/data/equipment';
+import { getCityContent, contentTemplates } from '@/data/city-content';
+import Link from 'next/link';
 
 // Define the cities we want to target for SEO
 const cities = [
@@ -98,9 +100,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = cities.find(c => c.slug === params.city);
   if (!city) return {};
+  
+  const cityContent = getCityContent(city.slug);
+  const vibeText = contentTemplates[cityContent.vibe].intro;
 
   const title = `Location Matériel Vidéo ${city.name} - Caméras, Drones, Lumières | Kashoot Loc`;
-  const description = `Louez votre matériel audiovisuel à ${city.name} et en région. Caméras Sony, Drones DJI, Lumières Cinéma. Devis immédiat sur WhatsApp. Livraison possible.`;
+  const description = `Louez votre matériel audiovisuel à ${city.name} (${city.zip}). ${vibeText} Livraison en ${cityContent.deliveryTime} sur ${city.name} et environs.`;
 
   return {
     title,
@@ -112,7 +117,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `matériel cinéma ${city.name}`,
       "Sony FX3",
       "Sony A7S III",
-      "Kashoot Loc"
+      "Kashoot Loc",
+      ...(cityContent.landmarks || [])
     ],
     openGraph: {
       title,
@@ -128,6 +134,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function LocationPage({ params }: Props) {
   const city = cities.find(c => c.slug === params.city);
   if (!city) notFound();
+
+  const cityContent = getCityContent(city.slug);
+  const template = contentTemplates[cityContent.vibe];
 
   // LocalBusiness Schema for this specific location/service area
   const jsonLd = {
@@ -154,7 +163,21 @@ export default function LocationPage({ params }: Props) {
       addressCountry: 'FR'
     },
     priceRange: '€€',
-    image: 'https://www.kashootloc.fr/images/logo.png'
+    image: 'https://www.kashootloc.fr/images/logo.png',
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      opens: "09:00",
+      closes: "23:00"
+    }
   };
 
   return (
@@ -174,9 +197,21 @@ export default function LocationPage({ params }: Props) {
             LOUEZ VOTRE MATÉRIEL VIDÉO À {city.name.toUpperCase()}.
           </h1>
           <p className="text-lg md:text-xl text-neutral-500 max-w-2xl leading-relaxed">
-            Besoin d'une caméra Sony, d'un drone DJI ou d'éclairage cinéma pour votre tournage à {city.name} ? 
-            Kashoot Loc vous accompagne avec du matériel professionnel disponible immédiatement.
+            {template.intro} <br />
+            Kashoot Loc vous accompagne à {city.name} avec du matériel professionnel disponible immédiatement.
           </p>
+          
+          <div className="flex flex-wrap gap-4 mt-6 text-sm text-neutral-600">
+            <span className="flex items-center gap-2 bg-neutral-100 px-3 py-1 rounded-full">
+              ⚡️ Livraison {cityContent.deliveryTime}
+            </span>
+            {cityContent.landmarks.map((landmark, i) => (
+               <span key={i} className="flex items-center gap-2 bg-neutral-100 px-3 py-1 rounded-full">
+                 📍 Proche {landmark}
+               </span>
+            ))}
+          </div>
+
           <div className="mt-8 flex gap-4">
              <a href="#catalogue" className="bg-black text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-neutral-800 transition-all">
                Voir le matériel
@@ -198,22 +233,51 @@ export default function LocationPage({ params }: Props) {
                 <p className="text-sm text-neutral-600">Dernières caméras Sony FX3, A7S III et optiques G Master vérifiées avant chaque départ. Idéal pour vos productions à {city.name}.</p>
               </div>
               <div>
-                <h3 className="font-bold mb-2">Service Rapide</h3>
-                <p className="text-sm text-neutral-600">Réservation simple via WhatsApp. Récupération facile ou livraison sur {city.name} et sa région.</p>
+                <h3 className="font-bold mb-2">Service Local</h3>
+                <p className="text-sm text-neutral-600">{template.why}</p>
               </div>
               <div>
-                <h3 className="font-bold mb-2">Tarifs Flexibles</h3>
-                <p className="text-sm text-neutral-600">Prix dégressifs pour vos tournages longs métrages, clips ou documentaires en région {city.name === 'Paris' ? 'Île-de-France' : 'française'}.</p>
+                <h3 className="font-bold mb-2">Flexibilité Totale</h3>
+                <p className="text-sm text-neutral-600">Ouvert 7j/7. Annulation flexible. Une équipe réactive qui connaît les contraintes de tournage en Île-de-France.</p>
               </div>
            </div>
         </div>
       </section>
 
-      {/* Catalog */}
+      {/* Catalogue Grid */}
       <div id="catalogue">
-        <EquipmentGrid />
+        <EquipmentGrid items={equipmentItems} />
       </div>
 
+      {/* Maillage Interne - Villes Voisines */}
+      <section className="py-12 px-6 border-t border-neutral-100">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-sm font-bold uppercase tracking-wider text-neutral-400 mb-6">
+            Location matériel vidéo à proximité de {city.name}
+          </h3>
+          <div className="flex flex-wrap gap-4">
+            {cityContent.nearbyCities.map((nearbySlug) => {
+              const nearbyCity = cities.find(c => c.slug === nearbySlug);
+              if (!nearbyCity) return null;
+              return (
+                <Link 
+                  key={nearbySlug}
+                  href={`/location/${nearbySlug}`}
+                  className="text-sm text-blue-600 hover:underline bg-blue-50 px-4 py-2 rounded-lg"
+                >
+                  Location {nearbyCity.name}
+                </Link>
+              );
+            })}
+             <Link 
+                  href="/location/paris"
+                  className="text-sm text-neutral-500 hover:text-neutral-900 px-4 py-2"
+                >
+                  Voir toutes les villes
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
