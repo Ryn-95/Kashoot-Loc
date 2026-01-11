@@ -86,8 +86,8 @@ export default function RootLayout({
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 48.9386,
-      longitude: 2.4906
+      latitude: 48.9419,
+      longitude: 2.4938
     },
     sameAs: [
       "https://www.instagram.com/kashoot_loc/",
