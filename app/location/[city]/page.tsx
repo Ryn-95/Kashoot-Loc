@@ -5,7 +5,16 @@ import { equipmentItems } from '@/data/equipment';
 
 // Define the cities we want to target for SEO
 const cities = [
+  // Île-de-France (Priorité absolue)
   { slug: 'paris', name: 'Paris', zip: '75000' },
+  { slug: 'saint-denis', name: 'Saint-Denis', zip: '93200' },
+  { slug: 'aulnay-sous-bois', name: 'Aulnay-sous-Bois', zip: '93600' },
+  { slug: 'roissy-en-france', name: 'Roissy-en-France', zip: '95700' },
+  { slug: 'goussainville', name: 'Goussainville', zip: '95190' },
+  { slug: 'montreuil', name: 'Montreuil', zip: '93100' },
+  { slug: 'boulogne-billancourt', name: 'Boulogne-Billancourt', zip: '92100' },
+  
+  // Grandes villes (Secondaire)
   { slug: 'lyon', name: 'Lyon', zip: '69000' },
   { slug: 'marseille', name: 'Marseille', zip: '13000' },
   { slug: 'bordeaux', name: 'Bordeaux', zip: '33000' },

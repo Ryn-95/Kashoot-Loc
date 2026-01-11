@@ -85,19 +85,20 @@ export default function Footer() {
               { name: 'Paris (75)', slug: 'paris' },
               { name: 'Saint-Denis (93)', slug: 'saint-denis' },
               { name: 'Aulnay-sous-Bois', slug: 'aulnay-sous-bois' },
-              { name: 'Roissy-en-France', slug: 'roissy' },
+              { name: 'Roissy-en-France', slug: 'roissy-en-france' },
               { name: 'Goussainville', slug: 'goussainville' },
+              { name: 'Montreuil', slug: 'montreuil' },
+              { name: 'Boulogne-Billancourt', slug: 'boulogne-billancourt' },
               { name: 'Lyon', slug: 'lyon' },
               { name: 'Marseille', slug: 'marseille' },
-              { name: 'Bordeaux', slug: 'bordeaux' },
-              { name: 'Lille', slug: 'lille' }
+              { name: 'Bordeaux', slug: 'bordeaux' }
             ].map((city) => (
               <Link 
                 key={city.slug} 
                 href={`/location/${city.slug}`}
                 className="text-xs text-neutral-500 hover:text-neutral-900 transition-colors"
               >
-                Location {city.name}
+                Location Vidéo {city.name}
               </Link>
             ))}
           </div>

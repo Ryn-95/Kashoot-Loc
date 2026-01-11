@@ -19,12 +19,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  const cities = ['paris', 'lyon', 'marseille', 'bordeaux', 'lille', 'nice', 'toulouse', 'nantes', 'strasbourg', 'montpellier'];
-  const locationUrls = cities.map((city) => ({
+  const citiesIDF = ['paris', 'saint-denis', 'aulnay-sous-bois', 'roissy-en-france', 'goussainville', 'montreuil', 'boulogne-billancourt'];
+  const citiesFrance = ['lyon', 'marseille', 'bordeaux', 'lille', 'nice', 'toulouse', 'nantes', 'strasbourg', 'montpellier'];
+  
+  const locationUrlsIDF = citiesIDF.map((city) => ({
+    url: `${baseUrl}/location/${city}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 1.0,
+  }));
+
+  const locationUrlsFrance = citiesFrance.map((city) => ({
     url: `${baseUrl}/location/${city}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: 0.7,
+    priority: 0.6,
   }));
 
   return [
@@ -38,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.5,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/faq`,
@@ -65,7 +74,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     ...categoryUrls,
-    ...locationUrls,
+    ...locationUrlsIDF,
+    ...locationUrlsFrance,
     ...productUrls,
   ];
 }
