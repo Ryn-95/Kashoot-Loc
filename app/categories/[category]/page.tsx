@@ -117,27 +117,6 @@ export default function CategoryPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      {/* SEO Header Section */}
-      <div className="bg-neutral-50 border-b border-neutral-100 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
-              {content.h1}
-            </h1>
-            <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-              {content.intro}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {content.features.map((feature, i) => (
-                <span key={i} className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-white border border-neutral-200 text-neutral-700 shadow-sm">
-                  {feature}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
       <Suspense fallback={<div className="min-h-screen bg-white" />}>
         <HomeClient initialCategoryProp={params.category} />
       </Suspense>
