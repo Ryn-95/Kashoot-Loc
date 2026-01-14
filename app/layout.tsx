@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
+import Preloader from "@/components/ui/Preloader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -123,6 +124,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.className} overflow-x-hidden`}>
+        <Preloader />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -5,7 +5,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import HeroBanner from '@/components/sections/HeroBanner';
 import Catalog from '@/components/sections/Catalog';
 import SeoContent from '@/components/sections/SeoContent';
-import Preloader from '@/components/ui/Preloader';
 import CategoryNav from '@/components/layout/CategoryNav';
 
 export default function HomeClient({ initialCategoryProp }: { initialCategoryProp?: string }) {
@@ -40,7 +39,6 @@ export default function HomeClient({ initialCategoryProp }: { initialCategoryPro
 
   return (
     <main className="min-h-screen bg-white pt-[60px] md:pt-[68px]">
-      <Preloader />
       <CategoryNav 
         activeCategory={activeCategory} 
       />

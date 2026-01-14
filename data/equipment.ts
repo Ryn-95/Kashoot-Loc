@@ -1,5 +1,21 @@
 export const equipmentItems = [
   {
+    id: 45,
+    category: 'cameras',
+    brand: 'Sony',
+    model: 'A7 V',
+    subtext: 'Full-frame Mirrorless',
+    specsBadge: 'AI Chip',
+    badge: 'Nouveau',
+    badgeType: 'blue',
+    price: '50',
+    image: '/images/Sony_A7V.png',
+    available: true,
+    colors: ['#000000'],
+    included: ['2 Batteries', 'Chargeur', 'Courroie'],
+    seoDescription: "Location Sony A7 V Paris. Le tout dernier hybride Sony avec puce IA dédiée. Autofocus révolutionnaire et qualité d'image supérieure."
+  },
+  {
     id: 1,
     category: 'cameras',
     brand: 'Sony',
@@ -633,21 +649,5 @@ export const equipmentItems = [
     image: '/images/Sac pour sony.png',
     available: true,
     colors: ['#000000']
-  },
-  {
-    id: 45,
-    category: 'cameras',
-    brand: 'Sony',
-    model: 'A7 V',
-    subtext: 'Full-frame Mirrorless',
-    specsBadge: 'AI Chip',
-    badge: 'Nouveau',
-    badgeType: 'blue',
-    price: '50',
-    image: '/images/Sony_A7V.png',
-    available: true,
-    colors: ['#000000'],
-    included: ['2 Batteries', 'Chargeur', 'Courroie'],
-    seoDescription: "Location Sony A7 V Paris. Le tout dernier hybride Sony avec puce IA dédiée. Autofocus révolutionnaire et qualité d'image supérieure."
   }
 ];
