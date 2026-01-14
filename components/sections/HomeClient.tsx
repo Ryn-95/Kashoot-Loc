@@ -11,7 +11,7 @@ import CategoryNav from '@/components/layout/CategoryNav';
 export default function HomeClient({ initialCategoryProp }: { initialCategoryProp?: string }) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const initialCategory = initialCategoryProp || searchParams.get('category') || 'tout';
+  const initialCategory = initialCategoryProp || 'tout';
   const initialSearch = searchParams.get('search') || '';
   
   const [activeCategory, setActiveCategory] = useState(initialCategory);
@@ -19,35 +19,30 @@ export default function HomeClient({ initialCategoryProp }: { initialCategoryPro
 
   // Sync state with URL params when they change
   useEffect(() => {
-    const category = searchParams.get('category');
+    // If the prop changes (due to navigation), update the state
+    if (initialCategoryProp) {
+      setActiveCategory(initialCategoryProp);
+    } else {
+       // If we are on home page (no prop), it might be 'tout'
+       // But wait, if we navigate from /categories/cameras to /, initialCategoryProp might be undefined
+       // So we should check if we are on the home path, or just trust the prop.
+       // Actually, if we are on /, initialCategoryProp is undefined in app/page.tsx if no search param.
+       // So we should default to 'tout'.
+       setActiveCategory(initialCategoryProp || 'tout');
+    }
+
     const search = searchParams.get('search');
-    
-    if (category) setActiveCategory(category);
-    else setActiveCategory('tout');
-    
     if (search) setSearchQuery(search);
     else setSearchQuery('');
-  }, [searchParams]);
+  }, [searchParams, initialCategoryProp]);
 
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    // Update URL without full reload
-    const newParams = new URLSearchParams(searchParams.toString());
-    if (category === 'tout') {
-      newParams.delete('category');
-    } else {
-      newParams.set('category', category);
-    }
-    // Reset search when changing category if desired, or keep it. Let's keep it flexible.
-    router.push(`/?${newParams.toString()}`, { scroll: false });
-  };
+  // Removed handleCategoryChange as we now use Link in CategoryNav
 
   return (
     <main className="min-h-screen bg-white pt-[60px] md:pt-[68px]">
       <Preloader />
       <CategoryNav 
         activeCategory={activeCategory} 
-        onCategoryChange={handleCategoryChange} 
       />
       <HeroBanner />
       <Catalog activeCategory={activeCategory} searchQuery={searchQuery} />

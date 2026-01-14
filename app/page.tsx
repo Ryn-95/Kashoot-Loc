@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 import HomeClient from '@/components/sections/HomeClient';
 import Preloader from '@/components/ui/Preloader';
 
@@ -8,29 +9,6 @@ type Props = {
 }
 
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-  const category = searchParams.category;
-  
-  if (category && typeof category === 'string' && category !== 'tout') {
-    const titles: Record<string, string> = {
-      cameras: 'Location Caméras Sony & Cinéma Paris',
-      objectifs: 'Location Objectifs Photo & Vidéo Paris',
-      drones: 'Location Drones & Stabilisateurs Paris',
-      lumieres: 'Location Éclairage Vidéo Professionnel',
-      audio: 'Location Matériel Son & Micro Paris',
-      accessoires: 'Location Accessoires Tournage & Trépieds',
-      moniteurs: 'Location Moniteurs & Enregistreurs Vidéo'
-    };
-    
-    const title = titles[category] || 'Location Matériel Vidéo Paris';
-    return {
-      title: `${title} | Kashoot Loc`,
-      description: `Découvrez notre gamme de ${category} en location à Paris. Matériel professionnel disponible immédiatement.`,
-      alternates: {
-        canonical: `https://www.kashootloc.fr/?category=${category}`
-      }
-    };
-  }
-
   return {
     title: 'Location Matériel Vidéo Paris (Caméra, Objectif, Lumière) - Kashoot Loc',
     description: 'Le n°1 de la location matériel vidéo à Paris & Île-de-France. Louez Sony FX3, FX6, Canon, Drones, Lumières au meilleur prix. Dispo 24/7.',
@@ -42,6 +20,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default function Home({ searchParams }: Props) {
   const category = typeof searchParams.category === 'string' ? searchParams.category : undefined;
+
+  // Redirect legacy query params to new routes
+  if (category && category !== 'tout') {
+    redirect(`/categories/${category}`);
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',

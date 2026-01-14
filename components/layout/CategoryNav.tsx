@@ -99,20 +99,22 @@ const categories = [
   },
 ];
 
+import Link from 'next/link';
+
 interface CategoryNavProps {
   activeCategory: string;
-  onCategoryChange: (id: string) => void;
+  onCategoryChange?: (id: string) => void;
 }
 
-export default function CategoryNav({ activeCategory, onCategoryChange }: CategoryNavProps) {
+export default function CategoryNav({ activeCategory }: CategoryNavProps) {
   return (
     <div className="bg-white sticky top-[60px] md:top-[68px] z-30 transition-all duration-300 border-b border-neutral-100/50 shadow-sm md:shadow-none">
       <div className="max-w-[1800px] mx-auto">
         <div className="flex items-center gap-2 sm:gap-8 overflow-x-auto no-scrollbar py-2 px-4 sm:px-6 lg:px-8 mask-linear-fade">
           {categories.map((category) => (
-            <button
+            <Link
               key={category.id}
-              onClick={() => onCategoryChange(category.id)}
+              href={category.id === 'tout' ? '/' : `/categories/${category.id}`}
               className={`
                 flex flex-col items-center justify-center gap-1.5 min-w-[72px] sm:min-w-[80px] pb-2 transition-all duration-300 group relative flex-shrink-0
                 ${activeCategory === category.id 
@@ -133,7 +135,7 @@ export default function CategoryNav({ activeCategory, onCategoryChange }: Catego
                 absolute bottom-[-1px] left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-black rounded-full transition-all duration-300
                 ${activeCategory === category.id ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
               `} />
-            </button>
+            </Link>
           ))}
         </div>
       </div>
