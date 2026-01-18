@@ -105,7 +105,7 @@ export const equipmentItems = [
     specsBadge: '33 MP',
     badge: null,
     badgeType: 'blue',
-    price: '40',
+    price: '45',
     image: '/images/Sony A7 IV.png',
     available: true,
     suggestedAccessories: [42, 6, 16],
